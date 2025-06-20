@@ -171,3 +171,15 @@ body.sidebar-open .overlay {
   --text: #f1f1f1;
   --muted: #aaaaaa;
 }
+.social-icons a,
+.footer-social-icons a {
+  margin: 0 6px;
+  color: var(--text);
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover,
+.footer-social-icons a:hover {
+  color: #d63031;
+}
