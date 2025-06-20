@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - ScholarGo</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="brand">
+      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+      <div class="brand-text">
+        <h1>ScholarGo</h1>
+        <p>Unlock scholarships, grants & opportunities</p>
+      </div>
+    </a>
+
+    <div class="right-controls">
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/scholarshipportalofficial?igsh=Y2FzbjRyd3ZmMGFo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/Scholar_portal?t=sXw4oexIAZoiwq222CbaoQ&s=09" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/scholarshipportalofficial" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Main -->
+  <main>
+    <section>
+      <h2>Get in Touch ✉️</h2>
+      <p>We're excited to hear from you! Whether you’ve found a scholarship to share, spotted a mistake, or just want to say hello — we’re listening.</p>
+
+      <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <label for="name">Name</label><br />
+        <input type="text" name="name" required /><br /><br />
+
+        <label for="email">Email</label><br />
+        <input type="email" name="email" required /><br /><br />
+
+        <label for="message">Message</label><br />
+        <textarea name="message" rows="5" required></textarea><br /><br />
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <h3>📲 Or reach out via social media</h3>
+      <div class="social-icons" style="margin-top: 10px;">
+        <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/scholarshipportalofficial?igsh=Y2FzbjRyd3ZmMGFo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/Scholar_portal?t=sXw4oexIAZoiwq222CbaoQ&s=09" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/scholarshipportalofficial" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 ScholarGo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>
