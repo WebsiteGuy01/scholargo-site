@@ -7,52 +7,83 @@
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
- </head>
+</head>
 <body>
-<header class="site-header">
-  <a href="index.html" class="brand">
-    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
-    <div class="brand-text">
-      <h1>ScholarGo</h1>
-      <p>Unlock scholarships, grants & opportunities</p>
-    </div>
-  </a>
 
-  <nav class="main-nav">
-    <a href="about.html">About</a>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="technology.html">Technology</a>
+    <a href="education.html">Education</a>
+    <a href="courses.html">Courses</a>
+    <a href="grants.html">Grants</a>
     <a href="contact.html">Contact</a>
-    <a href="privacy-policy.html">Privacy</a>
-  </nav>
-
-  <div class="right-controls">
-    <div class="social-icons">
-      <a href="https://wa.me/?text=Check%20out%20ScholarGo!%20https://scholargo.netlify.app"
-         target="_blank" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://scholargo.netlify.app"
-         target="_blank" title="Facebook">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://twitter.com/intent/tweet?text=Discover%20scholarships%20on%20ScholarGo!&url=https://scholargo.netlify.app"
-         target="_blank" title="Twitter">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
-      <i class="fas fa-moon"></i>
-    </button>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
   </div>
-</header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+
+    <a href="index.html" class="brand">
+      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+      <div class="brand-text">
+        <h1>ScholarGo</h1>
+        <p>Unlock scholarships, grants & opportunities</p>
+      </div>
+    </a>
+
+    <nav class="main-nav desktop-only">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+
+    <div class="right-controls">
+      <div class="social-icons">
+        <a href="https://wa.me/?text=Check%20out%20ScholarGo!%20https://scholargo.netlify.app"
+           target="_blank" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://scholargo.netlify.app"
+           target="_blank" title="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Discover%20scholarships%20on%20ScholarGo!&url=https://scholargo.netlify.app"
+           target="_blank" title="Twitter">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
   <main>
     <section data-aos="fade-up">
       <h2>Welcome to ScholarGo</h2>
       <p>Find the latest opportunities and updates.</p>
     </section>
   </main>
-  <footer>
-    <p>© 2025 ScholarGo</p>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 ScholarGo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
   </footer>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
