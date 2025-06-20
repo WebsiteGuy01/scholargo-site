@@ -33,12 +33,4 @@ window.addEventListener("scroll", () => {
   }
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-}
- function toggleSidebar() {
-  document.body.classList.toggle("sidebar-open");
-}
-
-function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
-}                      
-                       );
+});
