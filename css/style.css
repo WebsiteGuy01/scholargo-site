@@ -45,3 +45,82 @@ section {
 .card:hover {
   transform: translateY(-4px);
 }
+/* === Header Styles === */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 15px;
+}
+
+.brand-logo {
+  height: 64px;
+  width: auto;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid #d63031;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.6em;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.brand-text p {
+  margin: 0;
+  font-size: 0.95em;
+  color: #7f8c8d;
+}
+
+.main-nav a {
+  margin: 0 10px;
+  font-size: 0.95em;
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover {
+  color: #d63031;
+}
+
+.social-icons a {
+  margin-left: 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .main-nav {
+    margin-top: 10px;
+  }
+
+  .social-icons {
+    margin-top: 10px;
+  }
+}
