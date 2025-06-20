@@ -200,6 +200,41 @@ body {
   font-weight: 600;
   transition: color 0.3s;
 }
+/* === MOBILE SHRINK + HIDE ON SCROLL === */
+
+@media screen and (max-width: 768px) {
+  .site-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    padding: 10px 16px;
+  }
+
+  .site-header.hide-header {
+    transform: translateY(-100%);
+  }
+
+  .brand-logo {
+    height: 44px;
+    transition: height 0.3s ease;
+  }
+
+  .brand-text p {
+    display: none; /* Hide tagline on mobile */
+  }
+
+  .site-header.shrink .brand-logo {
+    height: 36px;
+  }
+
+  .site-header.shrink {
+    padding: 6px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+}
+
 
 .main-nav a:hover {
   color: #d63031;
