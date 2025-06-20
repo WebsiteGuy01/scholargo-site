@@ -1,7 +1,14 @@
+// Theme toggle
 const toggle = document.getElementById('theme-toggle');
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
 });
+
+// Sidebar toggle
+function toggleSidebar() {
+  document.body.classList.toggle('sidebar-open');
+}
+
 // Mobile scroll behavior
 let lastScrollTop = 0;
 const header = document.querySelector(".site-header");
@@ -27,4 +34,3 @@ window.addEventListener("scroll", () => {
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
-
