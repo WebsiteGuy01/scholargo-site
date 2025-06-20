@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - ScholarGo</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,14 +12,6 @@
 
   <!-- Floating Help Button -->
   <div class="floating-help" onclick="scrollToForm()">❓ Need Help?</div>
-<script>
-  function scrollToForm() {
-    const formSection = document.getElementById("contact-form");
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-</script>
 
   <!-- Header -->
   <header class="site-header">
@@ -38,7 +30,7 @@
       <h2>Let’s Talk! ☕</h2>
       <p data-aos="fade-up" data-aos-delay="100">Got feedback, ideas, or just want to say hi? We’re listening — always. ✨</p>
 
-      <form name="contact" method="POST" data-netlify="true">
+      <form id="contact-form" name="contact" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="contact" />
 
         <label for="name">👤 Name</label><br />
@@ -86,9 +78,11 @@
     AOS.init({ duration: 700, easing: 'ease-out-cubic' });
 
     function scrollToForm() {
-      const formSection = document.querySelector('form[name="contact"]');
-      if (formSection) {
-        formSection.scrollIntoView({ behavior: 'smooth' });
+      const form = document.getElementById("contact-form");
+      if (form) {
+        form.scrollIntoView({ behavior: "smooth" });
+      } else {
+        alert("Oops! The contact form wasn't found.");
       }
     }
 
@@ -96,11 +90,11 @@
       document.body.classList.toggle('sidebar-open');
     }
 
-    const form = document.querySelector('form[name="contact"]');
-    form.addEventListener('submit', function (e) {
+    const formElement = document.getElementById("contact-form");
+    formElement.addEventListener("submit", function (e) {
       e.preventDefault();
-      document.getElementById('thank-you-message').style.display = 'block';
-      form.reset();
+      document.getElementById("thank-you-message").style.display = "block";
+      formElement.reset();
     });
   </script>
 
