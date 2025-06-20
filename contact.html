@@ -12,6 +12,16 @@
 
   <!-- Floating Help Button -->
   <div class="floating-help" onclick="scrollToForm()">❓ Need Help?</div>
+  <script>
+    function scrollToForm() {
+      const form = document.getElementById("contact-form");
+      if (form) {
+        form.scrollIntoView({ behavior: "smooth" });
+      } else {
+        alert("Oops! The contact form wasn't found.");
+      }
+    }
+  </script>
 
   <!-- Header -->
   <header class="site-header">
@@ -76,15 +86,6 @@
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 700, easing: 'ease-out-cubic' });
-
-    function scrollToForm() {
-      const form = document.getElementById("contact-form");
-      if (form) {
-        form.scrollIntoView({ behavior: "smooth" });
-      } else {
-        alert("Oops! The contact form wasn't found.");
-      }
-    }
 
     function toggleSidebar() {
       document.body.classList.toggle('sidebar-open');
