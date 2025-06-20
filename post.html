@@ -20,13 +20,45 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <header>
-    <h1>🎓 ScholarGo</h1>
-    <p>Your trusted source for scholarships and student opportunities</p>
-  </header>
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+    <div class="brand-text">
+      <h1>ScholarGo</h1>
+      <p>Unlock scholarships, grants & opportunities</p>
+    </div>
+  </a>
+
+  <nav class="main-nav">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </nav>
+
+  <div class="right-controls">
+    <div class="social-icons">
+      <a href="https://wa.me/?text=Check%20out%20ScholarGo!%20https://scholargo.netlify.app"
+         target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://scholargo.netlify.app"
+         target="_blank" title="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Discover%20scholarships%20on%20ScholarGo!&url=https://scholargo.netlify.app"
+         target="_blank" title="Twitter">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+</header>
 
   <main>
     <section data-aos="fade-up">
@@ -84,5 +116,6 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>
