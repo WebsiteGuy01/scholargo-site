@@ -1,19 +1,23 @@
-// main.js for ScholarGo
+// main.js — AOS & smooth‑scroll
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS (Animate On Scroll)
-  AOS.init({
-    duration: 600,
-    easing: 'ease-out-cubic',
-    once: true
-  });
+  // 1. Animate On Scroll
+  if (window.AOS) {
+    AOS.init({
+      duration: 600,
+      easing: 'ease-out-cubic',
+      once: true
+    });
+  }
 
-  // Optional: smooth scroll for anchor links
+  // 2. Smooth scroll for internal anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      document.querySelector(this.getAttribute('href'))
-              .scrollIntoView({ behavior: 'smooth' });
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 });
