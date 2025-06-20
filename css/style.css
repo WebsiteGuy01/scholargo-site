@@ -345,5 +345,10 @@ body.sidebar-open .overlay {
   cursor: pointer;
   margin-right: 15px;
 }
+  @media screen and (max-width: 768px) {
+  .main-nav.desktop-only {
+    display: none;
+  }
+  }
   
 }
