@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - ScholarGo</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="brand">
+      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+      <div class="brand-text">
+        <h1>ScholarGo</h1>
+        <p>Unlock scholarships, grants & opportunities</p>
+      </div>
+    </a>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <main>
+    <section>
+      <h2>About ScholarGo</h2>
+      <p>ScholarGo was built for one reason: to help students find real opportunities without getting lost in spam or outdated info.</p>
+      <p>We’re students, learners, and dreamers just like you — and we know how hard it is to chase your goals when you don’t know where to start.</p>
+      <h3>What We Offer:</h3>
+      <ul>
+        <li>🎓 Latest scholarships and grants</li>
+        <li>💻 Tech and education updates</li>
+        <li>📚 Free and paid online course info</li>
+        <li>📬 Honest, ad-lite experience (because your attention matters!)</li>
+      </ul>
+      <p><strong>ScholarGo is made with ❤️, curiosity, and lots of late-night chai.</strong></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 ScholarGo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>
