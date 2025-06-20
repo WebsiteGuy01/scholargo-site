@@ -12,6 +12,14 @@
 
   <!-- Floating Help Button -->
   <div class="floating-help" onclick="scrollToForm()">❓ Need Help?</div>
+<script>
+  function scrollToForm() {
+    const formSection = document.getElementById("contact-form");
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+</script>
 
   <!-- Header -->
   <header class="site-header">
