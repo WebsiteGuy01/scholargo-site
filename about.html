@@ -2,49 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us - ScholarGo</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
+  <!-- Header -->
   <header class="site-header">
-    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
-    <a href="index.html" class="brand">
-      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
-      <div class="brand-text">
-        <h1>ScholarGo</h1>
-        <p>Unlock scholarships, grants & opportunities</p>
-      </div>
-    </a>
+    <!-- Header content (logo, nav, etc.) -->
   </header>
 
+  <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-    <a href="index.html">Home</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <!-- Sidebar links -->
   </div>
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
+  <!-- Main -->
   <main>
-    <section>
-      <h2>About ScholarGo</h2>
-      <p>ScholarGo was built for one reason: to help students find real opportunities without getting lost in spam or outdated info.</p>
-      <p>We’re students, learners, and dreamers just like you — and we know how hard it is to chase your goals when you don’t know where to start.</p>
-      <h3>What We Offer:</h3>
-      <ul>
-        <li>🎓 Latest scholarships and grants</li>
-        <li>💻 Tech and education updates</li>
-        <li>📚 Free and paid online course info</li>
-        <li>📬 Honest, ad-lite experience (because your attention matters!)</li>
+    <section data-aos="fade-up">
+      <h2>Who We Are 🤝</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        Welcome to <strong>ScholarGo</strong> — your free passport to educational opportunities! 🌍
+        We're a student-driven initiative dedicated to helping learners everywhere discover scholarships, grants,
+        online courses, and educational resources — <strong>absolutely free</strong>.
+      </p>
+
+      <h3 data-aos="fade-up" data-aos-delay="200">Our Mission 🎓</h3>
+      <p data-aos="fade-up" data-aos-delay="250">
+        To make quality education more accessible, less overwhelming, and fun to explore. We believe information should empower, not confuse.
+        That’s why we never charge fees, collect shady data, or make you jump through hoops. 📬
+      </p>
+
+      <h3 data-aos="fade-up" data-aos-delay="300">What We Offer 📚</h3>
+      <ul data-aos="fade-up" data-aos-delay="350">
+        <li>🎯 Curated scholarships and grant updates</li>
+        <li>📢 Tech, education, and course news</li>
+        <li>💡 Tips for students on a mission</li>
+        <li>🔍 100% free, no registration required</li>
       </ul>
-      <p><strong>ScholarGo is made with ❤️, curiosity, and lots of late-night chai.</strong></p>
+
+      <h3 data-aos="fade-up" data-aos-delay="400">Why Free? 🆓</h3>
+      <p data-aos="fade-up" data-aos-delay="450">
+        Because we’re students too. We’ve felt the struggles, the late-night form fills, and the endless tabs. Our
+        dream is to help others avoid the mess and find their path with less stress. ScholarGo is run with passion, not profit.
+      </p>
+
+      <h3 data-aos="fade-up" data-aos-delay="500">Let’s Stay Connected 💬</h3>
+      <p data-aos="fade-up" data-aos-delay="550">
+        Join our growing family online and help us spread the word:
+      </p>
+      <div class="social-icons" data-aos="fade-up" data-aos-delay="600">
+        <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/scholarshipportalofficial?igsh=Y2FzbjRyd3ZmMGFo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/Scholar_portal?t=sXw4oexIAZoiwq222CbaoQ&s=09" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/scholarshipportalofficial" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+      </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2025 ScholarGo. All rights reserved.</p>
     <div class="footer-links">
@@ -54,6 +76,12 @@
     </div>
   </footer>
 
-  <script src="js/theme.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, easing: 'ease-out-cubic' });
+    function toggleSidebar() {
+      document.body.classList.toggle('sidebar-open');
+    }
+  </script>
 </body>
 </html>
