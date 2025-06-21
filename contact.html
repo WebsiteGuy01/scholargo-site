@@ -46,14 +46,14 @@
       <form id="contact-form" name="contact" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="contact" />
 
-        <label for="name">👤 Name</label><br />
-        <input type="text" name="name" placeholder="Your full name" required /><br /><br />
+        <label for="contact-name">👤 Name</label><br />
+        <input id="contact-name" type="text" name="name" placeholder="Your full name" required autocomplete="name" /><br /><br />
 
-        <label for="email">📧 Email</label><br />
-        <input type="email" name="email" placeholder="you@example.com" required /><br /><br />
+        <label for="contact-email">📧 Email</label><br />
+        <input id="contact-email" type="email" name="email" placeholder="you@example.com" required autocomplete="email" /><br /><br />
 
-        <label for="message">📝 Your Message</label><br />
-        <textarea name="message" rows="5" placeholder="Type away... we read everything!" required></textarea><br /><br />
+        <label for="contact-message">📝 Your Message</label><br />
+        <textarea id="contact-message" name="message" rows="5" placeholder="Type away... we read everything!" required autocomplete="off"></textarea><br /><br />
 
         <button type="submit">🚀 Send It!</button>
       </form>
