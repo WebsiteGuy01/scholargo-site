@@ -16,7 +16,10 @@
     function scrollToForm() {
       const form = document.getElementById("contact-form");
       if (form) {
-        form.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({
+          top: form.getBoundingClientRect().top + window.pageYOffset - 60,
+          behavior: "smooth"
+        });
       } else {
         alert("Oops! The contact form wasn't found.");
       }
