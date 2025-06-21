@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scholarships - ScholarGo</title>
+  <meta name="description" content="Discover the latest scholarships for students around the world. 100% free and regularly updated.">
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <!-- Your existing header (logo, nav, toggle etc.) -->
+  </header>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <!-- Your sidebar links -->
+  </div>
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section data-aos="fade-down">
+      <h1>🎓 Latest Scholarships</h1>
+      <p>Explore top scholarships from around the world — always 100% free and student-focused.</p>
+    </section>
+
+    <!-- Scholarship Listings -->
+    <section class="card-grid">
+      <!-- Sample Scholarship Card -->
+      <div class="card" data-aos="fade-up">
+        <h3>DAAD Germany Scholarships 2025</h3>
+        <p>Fully funded for international students. Includes tuition, travel, and monthly stipend.</p>
+        <a href="https://daad.de" target="_blank" class="read-more">🔗 Apply Now</a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <h3>Fulbright USA Masters Program</h3>
+        <p>For brilliant minds looking to study in the US. All majors eligible. Deadline: Aug 30</p>
+        <a href="#" class="read-more">🔗 View Details</a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <h3>Australia Awards 2025</h3>
+        <p>Study in Australia with full tuition, living allowance, and return airfare.</p>
+        <a href="#" class="read-more">🔗 Learn More</a>
+      </div>
+
+      <!-- Add more scholarships manually here -->
+    </section>
+
+    <!-- Social Icons -->
+    <section data-aos="fade-up" data-aos-delay="300">
+      <h3 style="margin-top: 2rem;">Follow Us for Updates:</h3>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/scholarshipportalofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/Scholar_portal" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/scholarshipportalofficial" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 ScholarGo. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 600, easing: 'ease-out-cubic' });
+
+    function toggleSidebar() {
+      document.body.classList.toggle('sidebar-open');
+    }
+  </script>
+
+</body>
+</html>
