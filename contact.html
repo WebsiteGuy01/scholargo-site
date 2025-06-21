@@ -10,22 +10,6 @@
 </head>
 <body>
 
-  <!-- Floating Help Button -->
-  <div class="floating-help" onclick="scrollToForm()">❓ Need Help?</div>
-  <script>
-    function scrollToForm() {
-      const form = document.getElementById("contact-form");
-      if (form) {
-        window.scrollTo({
-          top: form.getBoundingClientRect().top + window.pageYOffset - 60,
-          behavior: "smooth"
-        });
-      } else {
-        alert("Oops! The contact form wasn't found.");
-      }
-    }
-  </script>
-
   <!-- Header -->
   <header class="site-header">
     <!-- Header content (logo, nav, etc.) -->
@@ -101,26 +85,6 @@
       formElement.reset();
     });
   </script>
-
-  <style>
-    .floating-help {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #d63031;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 50px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 999;
-      transition: background 0.3s ease;
-    }
-    .floating-help:hover {
-      background: #b71c1c;
-    }
-  </style>
 
 </body>
 </html>
