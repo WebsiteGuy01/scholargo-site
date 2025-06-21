@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>ScholarGo Admin</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/netlify-cms@2.15.72/dist/netlify-cms.js"></script>
+    <meta charset="UTF-8" />
+    <title>ScholarGo CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body { margin: 0; padding: 0; font-family: sans-serif; }
+    </style>
   </head>
   <body>
-    <!-- 👇 This is the critical part -->
+    <!-- CMS Root Mount -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <div id="nc-root"></div>
-
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-        window.netlifyIdentity.init();
-      }
-    </script>
   </body>
 </html>
