@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "scholarships"
+    label: "Scholarships"
+    folder: "content/scholarships"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Application Link", name: "link", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "courses"
+    label: "Courses"
+    folder: "content/courses"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Course Title", name: "title", widget: "string" }
+      - { label: "Instructor(s)", name: "instructor", widget: "string" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "technology"
+    label: "Tech Updates"
+    folder: "content/technology"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Headline", name: "title", widget: "string" }
+      - { label: "Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Static Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "content/pages/about.md"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Contact Page"
+        name: "contact"
+        file: "content/pages/contact.md"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "content/pages/privacy.md"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
