@@ -1,148 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scholarships - ScholarGo</title>
-  <meta name="description" content="Browse the latest scholarships for students. Filter, search, and apply — 100% free and updated regularly by ScholarGo.">
+  <meta name="description" content="Find the latest BS, MPhil, and Fellowship scholarships. Filter, search, and apply easily with ScholarGo.">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-    <a href="index.html">Home</a>
-    <a href="scholarships.html">Scholarships</a>
-    <a href="courses.html">Courses</a>
-    <a href="technology.html">Technology</a>
-    <a href="education.html">Education</a>
-    <a href="grants.html">Grants</a>
-    <a href="contact.html">Contact</a>
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="scholarships.html">Scholarships</a>
+  <a href="technology.html">Technology</a>
+  <a href="education.html">Education</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About</a>
+  <a href="privacy-policy.html">Privacy Policy</a>
+</div>
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Header -->
+<header class="site-header">
+  <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+  <a href="index.html" class="brand">
+    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+    <div class="brand-text">
+      <h1>ScholarGo</h1>
+      <p>Unlock Scholarships, Grants & Opportunities</p>
+    </div>
+  </a>
+  <div class="right-controls">
+    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section data-aos="fade-down">
+    <h2>🎓 Latest Scholarships</h2>
+    <p>Find fully funded BS, MPhil & Fellowship scholarships. Filter, search and apply in one place.</p>
+  </section>
+
+  <!-- Search + Filter -->
+  <section class="search-section" data-aos="fade-up">
+    <input type="text" id="searchInput" placeholder="🔍 Search scholarships..." onkeyup="filterScholarships()" />
+    <select id="categoryFilter" onchange="filterScholarships()">
+      <option value="all">🎯 All Categories</option>
+      <option value="bs">BS</option>
+      <option value="mphil">MPhil</option>
+      <option value="fellowship">Fellowship</option>
+    </select>
+    <button onclick="sortScholarships()" class="latest-btn">🕓 Latest First</button>
+  </section>
+
+  <!-- Cards -->
+  <section id="scholarship-list" class="card-grid">
+    <div class="card" data-aos="fade-up" data-date="2025-06-20" data-category="bs">
+      <img src="assets/uploads/daad.jpg" alt="DAAD Scholarship" class="card-thumb">
+      <h3>DAAD Germany Scholarships 2025</h3>
+      <p>Fully funded BS and MPhil programs in Germany. Covers tuition, travel, stipend.</p>
+      <a href="https://daad.de" target="_blank">🔗 Apply Now</a>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-date="2025-06-15" data-category="fellowship">
+      <img src="assets/uploads/australia-awards.jpg" alt="Australia Awards" class="card-thumb">
+      <h3>Australia Awards 2025</h3>
+      <p>Fellowship + postgraduate opportunities in Australia. Tuition, flights, and allowance covered.</p>
+      <a href="#">🔗 Learn More</a>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-date="2025-06-10" data-category="mphil">
+      <img src="assets/uploads/fulbright.jpg" alt="Fulbright USA" class="card-thumb">
+      <h3>Fulbright USA for MPhil Students</h3>
+      <p>Study in the USA with full financial support. MPhil & research students eligible.</p>
+      <a href="#">🔗 View Details</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p>&copy; 2025 ScholarGo. All rights reserved.</p>
+  <div class="footer-links">
     <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
     <a href="privacy-policy.html">Privacy Policy</a>
   </div>
-  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+</footer>
 
-  <!-- Header -->
-  <header class="site-header">
-    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
-    <a href="index.html" class="brand">
-      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
-      <div class="brand-text">
-        <h1>ScholarGo</h1>
-        <p>Unlock scholarships, grants & opportunities</p>
-      </div>
-    </a>
-    <div class="right-controls">
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-    </div>
-  </header>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 700, easing: 'ease-out-cubic' });
 
-  <main>
-    <!-- Hero Section -->
-    <section data-aos="fade-down">
-      <h2>🎓 Browse Scholarships</h2>
-      <p>Freshly curated scholarships to support your academic dreams. Updated frequently, sorted for simplicity.</p>
-    </section>
+  function toggleSidebar() {
+    document.body.classList.toggle('sidebar-open');
+  }
 
-    <!-- Search & Sort -->
-    <section class="search-section" data-aos="fade-up">
-      <input type="text" id="searchInput" placeholder="🔍 Search scholarships..." onkeyup="filterScholarships()" />
-      <button onclick="sortScholarships()" class="latest-btn">🎯 Latest Scholarships</button>
-      <select id="categoryFilter" onchange="filterScholarships()" title="Filter by degree" style="margin-top: 1rem;">
-  <option value="all">🎓 All Categories</option>
-  <option value="bs">BS</option>
-  <option value="mphil">MPhil</option>
-  <option value="fellowship">Fellowship</option>
-</select>
-
-    </section>
-
-    <!-- Scholarship Cards -->
-  <div class="card" data-aos="fade-up" data-date="2025-06-20" data-category="bs">
-  <h3>DAAD Germany Scholarships 2025</h3>
-  ...
-</div>
-
-<div class="card" data-aos="fade-up" data-date="2025-06-10" data-category="mphil">
-  <h3>Fulbright USA Masters Program</h3>
-  ...
-</div>
-
-<div class="card" data-aos="fade-up" data-date="2025-06-15" data-category="fellowship">
-  <h3>Australia Awards 2025</h3>
-  ...
-</div>
-
-    </section>
-
-    <!-- Social Icons -->
-    <section data-aos="fade-up">
-      <h3 style="margin-top: 2rem;">Follow Us for Updates:</h3>
-      <div class="social-icons">
-        <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/scholarshipportalofficial" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/Scholar_portal" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://t.me/scholarshipportalofficial" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <p>&copy; 2025 ScholarGo. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 700, easing: 'ease-out-cubic' });
-
-    function toggleSidebar() {
-      document.body.classList.toggle('sidebar-open');
-    }
-
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-    });
-
-   function filterScholarships() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const category = document.getElementById("categoryFilter").value;
-  const cards = document.querySelectorAll("#scholarship-list .card");
-
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    const cardCategory = card.dataset.category;
-
-    const matchesSearch = text.includes(query);
-    const matchesCategory = category === "all" || cardCategory.includes(category);
-
-    card.style.display = (matchesSearch && matchesCategory) ? "block" : "none";
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
   });
-}
 
+  function filterScholarships() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const category = document.getElementById("categoryFilter").value;
+    const cards = document.querySelectorAll("#scholarship-list .card");
 
-    function sortScholarships() {
-      const list = document.getElementById("scholarship-list");
-      const cards = Array.from(list.querySelectorAll(".card"));
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      const cardCategory = card.dataset.category;
+      const matchText = text.includes(query);
+      const matchCategory = category === "all" || cardCategory.includes(category);
+      card.style.display = matchText && matchCategory ? "block" : "none";
+    });
+  }
 
-      cards.sort((a, b) => {
-        return new Date(b.dataset.date) - new Date(a.dataset.date);
-      });
+  function sortScholarships() {
+    const list = document.getElementById("scholarship-list");
+    const cards = Array.from(list.querySelectorAll(".card"));
+    cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+    cards.forEach(card => list.appendChild(card));
+  }
+</script>
 
-      cards.forEach(card => list.appendChild(card));
-    }
-  </script>
 </body>
 </html>
