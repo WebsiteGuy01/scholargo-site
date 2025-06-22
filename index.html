@@ -10,8 +10,7 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
- <!-- Sidebar -->
+  <!-- Sidebar (Mobile Only) -->
 <div id="sidebar" class="sidebar">
   <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   <a href="index.html">Home</a>
@@ -23,35 +22,37 @@
   <a href="privacy-policy.html">Privacy Policy</a>
 </div>
 
+<!-- Overlay -->
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
-  <!-- Overlay -->
-  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+<!-- Header -->
+<header class="site-header">
+  <!-- Sidebar toggle on mobile -->
+  <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
 
-  <!-- Header -->
-  <header class="site-header">
-    <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
-
-    <a href="index.html" class="brand">
-      <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
-      <div class="brand-text">
-        <h1>ScholarGo</h1>
-        <p>Unlock scholarships, grants & opportunities</p>
-      </div>
-    </a>
-<!--
-    <nav class="main-nav desktop-only">
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
-        -->
-    <div class="right-controls">
-          
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
-      </button>
+  <a href="index.html" class="brand">
+    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+    <div class="brand-text">
+      <h1>ScholarGo</h1>
+      <p>Unlock scholarships, grants & opportunities</p>
     </div>
-  </header>
+  </a>
+
+  <!-- Top nav for desktop only -->
+  <nav class="main-nav desktop-only">
+    <a href="scholarships.html">Scholarships</a>
+    <a href="technology.html">Technology</a>
+    <a href="education.html">Education</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="right-controls">
+    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+</header>
 
   <main>
     <section data-aos="fade-up">
