@@ -12,40 +12,40 @@
 <body>
 
 <!-- Sidebar (Mobile Only) -->
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar mobile-only">
   <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   <a href="index.html">Home</a>
   <a href="scholarships.html">Scholarships</a>
-  <a href="technology.html">Technology</a>
-  <a href="education.html">Education</a>
   <a href="contact.html">Contact</a>
   <a href="about.html">About</a>
   <a href="privacy-policy.html">Privacy Policy</a>
 </div>
+
+<!-- Overlay -->
 <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
 <!-- Header -->
 <header class="site-header">
-  <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+  <button class="menu-btn mobile-only" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
 
   <a href="index.html" class="brand">
     <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
     <div class="brand-text">
       <h1>ScholarGo</h1>
-      <p>Unlock Scholarships, Grants & Opportunities</p>
+      <p>Unlock scholarships, grants & opportunities</p>
     </div>
   </a>
 
   <nav class="main-nav desktop-only">
     <a href="scholarships.html">Scholarships</a>
-    <a href="technology.html">Technology</a>
-    <a href="education.html">Education</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
   <div class="right-controls">
-    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+      <i class="fas fa-moon"></i>
+    </button>
   </div>
 </header>
 
