@@ -1,81 +1,81 @@
+<!-- technology.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Technology - ScholarGo</title>
-  <meta name="description" content="Stay updated with the latest AI tools, student apps, and education technology news from ScholarGo.">
+  <meta name="description" content="Stay updated with the latest tech trends, innovations, and student-friendly tools on ScholarGo.">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
+<!-- Sidebar (Mobile Only) -->
+<div id="sidebar" class="sidebar mobile-only">
   <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   <a href="index.html">Home</a>
   <a href="scholarships.html">Scholarships</a>
-  <a href="technology.html">Technology</a>
   <a href="education.html">Education</a>
+  <a href="technology.html">Technology</a>
   <a href="contact.html">Contact</a>
   <a href="about.html">About</a>
   <a href="privacy-policy.html">Privacy Policy</a>
 </div>
 <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
-<!-- Header -->
 <header class="site-header">
-  <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+  <button class="menu-btn mobile-only" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+  <nav class="main-nav desktop-only top-nav">
+    <a href="index.html">Home</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="education.html">Education</a>
+    <a href="technology.html">Technology</a>
+  </nav>
+
   <a href="index.html" class="brand">
     <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
     <div class="brand-text">
       <h1>ScholarGo</h1>
-      <p>Tech Tools & Student Innovations</p>
+      <p>Unlock scholarships, grants & opportunities</p>
     </div>
   </a>
+
   <div class="right-controls">
-    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+    <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
   </div>
 </header>
 
 <main>
-  <!-- Hero -->
   <section data-aos="fade-down">
-    <h2>💡 Latest Technology for Students</h2>
-    <p>Explore tools, AI apps, and tech updates to boost your study life.</p>
+    <h2>💻 Technology Updates</h2>
+    <p>Discover tools, apps, and trends that can help students excel in the digital world.</p>
   </section>
 
-  <!-- Search + Filter -->
-  <section class="search-section" data-aos="fade-up">
-    <input type="text" id="searchInput" placeholder="🔍 Search technology..." onkeyup="filterTechnology()" />
-    <select id="techFilter" onchange="filterTechnology()" title="Filter by topic">
-      <option value="all">📁 All</option>
-      <option value="ai">AI Tools</option>
-      <option value="apps">Student Apps</option>
-    </select>
-    <button onclick="sortTechnology()" class="latest-btn">🕓 Latest First</button>
-  </section>
-
-  <!-- Card Grid -->
-  <section id="technology-list" class="card-grid">
-    <div class="card" data-aos="fade-up" data-date="2025-06-20" data-topic="ai">
-      <img src="assets/uploads/chatgpt-student.jpg" alt="AI Study Tool" class="card-thumb" />
-      <h3>How Students Use ChatGPT to Study Smarter</h3>
-      <p>Discover tips on how to responsibly use ChatGPT and AI to research, write and brainstorm academically.</p>
-      <a href="#">🤖 Read More</a>
+  <section class="card-grid" id="technology-cards">
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-ai.jpg" class="card-thumb" alt="AI Tools">
+      <h3>Top AI Tools for Students</h3>
+      <p>Enhance productivity and creativity using the latest AI-powered solutions.</p>
+      <a href="#">🤖 Explore Now</a>
     </div>
-
-    <div class="card" data-aos="fade-up" data-date="2025-06-10" data-topic="apps">
-      <img src="assets/uploads/best-study-apps.jpg" alt="Study Apps" class="card-thumb" />
-      <h3>Top 5 Study Apps Every Student Must Use</h3>
-      <p>Boost your productivity with apps like Notion, Forest, Quizlet, and more.</p>
-      <a href="#">📱 Try Them Out</a>
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-note.jpg" class="card-thumb" alt="Note Apps">
+      <h3>Best Note-Taking Apps</h3>
+      <p>Compare top apps for organizing your academic notes effectively.</p>
+      <a href="#">🗒 Try Them</a>
+    </div>
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-cloud.jpg" class="card-thumb" alt="Cloud Storage">
+      <h3>Cloud Storage for Students</h3>
+      <p>Find reliable and free cloud storage services to secure your work.</p>
+      <a href="#">☁️ Check Options</a>
     </div>
   </section>
 </main>
 
-<!-- Footer -->
 <footer class="site-footer">
   <p>&copy; 2025 ScholarGo. All rights reserved.</p>
   <div class="footer-links">
@@ -85,40 +85,39 @@
   </div>
 </footer>
 
-<!-- Scripts -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 700, easing: 'ease-out-cubic' });
-
   function toggleSidebar() {
-    document.body.classList.toggle('sidebar-open');
+    document.body.classList.toggle("sidebar-open");
   }
-
   document.getElementById("theme-toggle").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
   });
-
-  function filterTechnology() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const topic = document.getElementById("techFilter").value;
-    const cards = document.querySelectorAll("#technology-list .card");
-
-    cards.forEach(card => {
-      const text = card.innerText.toLowerCase();
-      const cardTopic = card.dataset.topic;
-      const matchText = text.includes(query);
-      const matchTopic = topic === "all" || cardTopic.includes(topic);
-      card.style.display = matchText && matchTopic ? "block" : "none";
-    });
-  }
-
-  function sortTechnology() {
-    const list = document.getElementById("technology-list");
-    const cards = Array.from(list.querySelectorAll(".card"));
-    cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
-    cards.forEach(card => list.appendChild(card));
-  }
 </script>
+
+<style>
+.top-nav {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 0 0 8px 8px;
+  z-index: 1000;
+  display: flex;
+  gap: 1rem;
+}
+.top-nav a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+.top-nav a:hover {
+  color: var(--secondary);
+}
+</style>
 
 </body>
 </html>
