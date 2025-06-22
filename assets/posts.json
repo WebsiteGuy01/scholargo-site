@@ -1,0 +1,18 @@
+[
+  {
+    "title": "DAAD Germany Scholarships 2025",
+    "date": "2025-06-20",
+    "category": "BS",
+    "description": "Fully funded for international students. Includes tuition, travel, and stipend.",
+    "link": "https://daad.de",
+    "thumbnail": "/assets/uploads/daad.png"
+  },
+  {
+    "title": "Fulbright Program USA",
+    "date": "2025-06-10",
+    "category": "MPhil",
+    "description": "Fully funded Masters in the USA for international students.",
+    "link": "#",
+    "thumbnail": "/assets/uploads/fulbright.png"
+  }
+]
