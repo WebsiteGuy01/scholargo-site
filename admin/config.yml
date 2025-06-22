@@ -16,11 +16,14 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Category", name: "category", widget: "select", options: ["Scholarships", "Technology", "Education"]}
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"] }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
 
   - name: "pages"
     label: "Site Pages"
