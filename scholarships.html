@@ -30,13 +30,6 @@
 <header class="site-header">
   <button class="menu-btn mobile-only" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
 
-  <nav class="main-nav desktop-only top-nav">
-    <a href="index.html">Home</a>
-    <a href="scholarships.html">Scholarships</a>
-    <a href="education.html">Education</a>
-    <a href="technology.html">Technology</a>
-  </nav>
-
   <a href="index.html" class="brand">
     <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
     <div class="brand-text">
@@ -44,6 +37,13 @@
       <p>Unlock scholarships, grants & opportunities</p>
     </div>
   </a>
+
+  <nav class="main-nav desktop-only bottom-nav">
+    <a href="index.html">Home</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="education.html">Education</a>
+    <a href="technology.html">Technology</a>
+  </nav>
 
   <div class="right-controls">
     <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
@@ -142,24 +142,22 @@
 </script>
 
 <style>
-.top-nav {
-  position: absolute;
-  top: 0;
-  left: 1rem;
-  padding: 0.5rem 1rem;
+.bottom-nav {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
   background: white;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 0 0 8px 8px;
-  z-index: 1000;
+  border-radius: 8px;
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
+  justify-content: center;
 }
-.top-nav a {
+.bottom-nav a {
   color: var(--primary);
   font-weight: bold;
   text-decoration: none;
 }
-.top-nav a:hover {
+.bottom-nav a:hover {
   color: var(--secondary);
 }
 </style>
