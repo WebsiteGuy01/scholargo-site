@@ -127,6 +127,28 @@
     cards.forEach(card => list.appendChild(card));
   }
 </script>
+<script>
+fetch("assets/posts.json")
+  .then(res => res.json())
+  .then(posts => {
+    const list = document.getElementById("scholarship-list");
+    list.innerHTML = ""; // Clear existing cards
+    posts.forEach(post => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.setAttribute("data-date", post.date);
+      card.setAttribute("data-category", post.category.toLowerCase());
+
+      card.innerHTML = `
+        <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
+        <h3>${post.title}</h3>
+        <p>${post.description}</p>
+        <a href="${post.link}" target="_blank">🔗 Apply Now</a>
+      `;
+      list.appendChild(card);
+    });
+  });
+</script>
 
 </body>
 </html>
