@@ -279,7 +279,56 @@ h2, h3, p {
   #overlay {
     display: none !important;
   }
+/* Desktop nav styles */
+.desktop-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.1rem 0 0.4rem 0;
+  background: linear-gradient(90deg, #fff 0%, #f4f6fb 100%);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border-bottom: 1px solid #eee;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+}
 
+.desktop-nav a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5em 1.1em;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-size: 1.06rem;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+.desktop-nav a.active,
+.desktop-nav a:hover {
+  background: #003366;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,51,102,0.07);
+}
+
+/* Push header content down to make space for nav */
+.site-header {
+  position: relative;
+  padding-top: 3.6em !important;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+  .site-header {
+    padding-top: 0 !important;
+  }
+}
   /* Desktop nav shown */
   .main-nav.desktop-only {
     display: flex;
