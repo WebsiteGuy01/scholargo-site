@@ -268,3 +268,28 @@ h2, h3, p {
   text-align: center;
   padding: 0 1rem;
 }
+/* Hide nav or sidebar toggle on desktop */
+@media screen and (min-width: 769px) {
+  .menu-btn,
+  .sidebar,
+  #overlay,
+  .close-btn {
+    display: none;
+  }
+
+  .main-nav.desktop-only {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 0 0.5rem;
+}
+.main-nav a:hover {
+  color: var(--primary);
+}
