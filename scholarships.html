@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- Sidebar -->
+<!-- Sidebar (Mobile Only) -->
 <div id="sidebar" class="sidebar">
   <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   <a href="index.html">Home</a>
@@ -27,6 +27,7 @@
 <!-- Header -->
 <header class="site-header">
   <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+
   <a href="index.html" class="brand">
     <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
     <div class="brand-text">
@@ -34,6 +35,15 @@
       <p>Unlock Scholarships, Grants & Opportunities</p>
     </div>
   </a>
+
+  <nav class="main-nav desktop-only">
+    <a href="scholarships.html">Scholarships</a>
+    <a href="technology.html">Technology</a>
+    <a href="education.html">Education</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
   <div class="right-controls">
     <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
   </div>
@@ -60,26 +70,7 @@
 
   <!-- Cards -->
   <section id="scholarship-list" class="card-grid">
-    <div class="card" data-aos="fade-up" data-date="2025-06-20" data-category="bs">
-      <img src="assets/uploads/daad.jpg" alt="DAAD Scholarship" class="card-thumb">
-      <h3>DAAD Germany Scholarships 2025</h3>
-      <p>Fully funded BS and MPhil programs in Germany. Covers tuition, travel, stipend.</p>
-      <a href="https://daad.de" target="_blank">🔗 Apply Now</a>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-date="2025-06-15" data-category="fellowship">
-      <img src="assets/uploads/australia-awards.jpg" alt="Australia Awards" class="card-thumb">
-      <h3>Australia Awards 2025</h3>
-      <p>Fellowship + postgraduate opportunities in Australia. Tuition, flights, and allowance covered.</p>
-      <a href="#">🔗 Learn More</a>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-date="2025-06-10" data-category="mphil">
-      <img src="assets/uploads/fulbright.jpg" alt="Fulbright USA" class="card-thumb">
-      <h3>Fulbright USA for MPhil Students</h3>
-      <p>Study in the USA with full financial support. MPhil & research students eligible.</p>
-      <a href="#">🔗 View Details</a>
-    </div>
+    <p>Loading scholarships...</p>
   </section>
 </main>
 
@@ -99,7 +90,7 @@
   AOS.init({ duration: 700, easing: 'ease-out-cubic' });
 
   function toggleSidebar() {
-    document.body.classList.toggle('sidebar-open');
+    document.body.classList.toggle("sidebar-open");
   }
 
   document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -115,7 +106,7 @@
       const text = card.innerText.toLowerCase();
       const cardCategory = card.dataset.category;
       const matchText = text.includes(query);
-      const matchCategory = category === "all" || cardCategory.includes(category);
+      const matchCategory = category === "all" || cardCategory === category;
       card.style.display = matchText && matchCategory ? "block" : "none";
     });
   }
@@ -126,60 +117,28 @@
     cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
     cards.forEach(card => list.appendChild(card));
   }
-</script>
-<script>
-fetch("assets/posts.json")
-  .then(res => res.json())
-  .then(posts => {
-    const list = document.getElementById("scholarship-list");
-    list.innerHTML = ""; // Clear existing cards
-    posts.forEach(post => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.setAttribute("data-date", post.date);
-      card.setAttribute("data-category", post.category.toLowerCase());
 
-      card.innerHTML = `
-        <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
-        <h3>${post.title}</h3>
-        <p>${post.description}</p>
-        <a href="${post.link}" target="_blank">🔗 Apply Now</a>
-      `;
-      list.appendChild(card);
+  // Load posts dynamically from posts.json
+  fetch("assets/posts.json")
+    .then(res => res.json())
+    .then(posts => {
+      const list = document.getElementById("scholarship-list");
+      list.innerHTML = ""; // Clear "Loading..." text
+      posts.forEach(post => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("data-date", post.date);
+        card.setAttribute("data-category", post.category.toLowerCase());
+
+        card.innerHTML = `
+          <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
+          <h3>${post.title}</h3>
+          <p>${post.description}</p>
+          <a href="${post.link}" target="_blank">🔗 Apply Now</a>
+        `;
+        list.appendChild(card);
+      });
     });
-  });
-</script>
-<script>
-function filterScholarships() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const cards = document.querySelectorAll("#scholarship-list .card");
-
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(query) ? "block" : "none";
-  });
-}
-
-function sortScholarships() {
-  const list = document.getElementById("scholarship-list");
-  const cards = Array.from(list.querySelectorAll(".card"));
-
-  cards.sort((a, b) => {
-    return new Date(b.dataset.date) - new Date(a.dataset.date);
-  });
-
-  cards.forEach(card => list.appendChild(card));
-}
-
-function filterByCategory() {
-  const selected = document.getElementById("categoryFilter").value.toLowerCase();
-  const cards = document.querySelectorAll("#scholarship-list .card");
-
-  cards.forEach(card => {
-    const cat = card.dataset.category;
-    card.style.display = (selected === "all" || cat === selected) ? "block" : "none";
-  });
-}
 </script>
 
 </body>
