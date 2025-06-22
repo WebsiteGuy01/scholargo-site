@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home - ScholarGo</title>
-  <meta name="description" content="Welcome to ScholarGo – Explore scholarships, education resources, and tech updates for students.">
+  <meta name="description" content="ScholarGo - Unlock scholarships, educational resources, and technology updates for students worldwide.">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -23,12 +23,10 @@
   <a href="about.html">About</a>
   <a href="privacy-policy.html">Privacy Policy</a>
 </div>
-
 <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
-<!-- Header -->
 <header class="site-header">
-  <button class="menu-btn mobile-only" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+  <button class="menu-btn mobile-only" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 
   <nav class="main-nav desktop-only top-nav">
     <a href="index.html">Home</a>
@@ -46,37 +44,59 @@
   </a>
 
   <div class="right-controls">
-    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
-      <i class="fas fa-moon"></i>
-    </button>
+    <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
   </div>
 </header>
 
 <main>
+  <!-- Hero Section -->
   <section data-aos="fade-down">
-    <h2>📚 Welcome to ScholarGo</h2>
-    <p>Your one-stop hub for scholarships, educational tools, and tech resources for students.</p>
+    <h2>🎯 Welcome to ScholarGo</h2>
+    <p>Your all-in-one platform for scholarships, education updates, and tech tools for students.</p>
   </section>
 
-  <section class="card-grid" id="home-sections">
+  <!-- Smart Search Section -->
+  <section class="search-section" data-aos="fade-up">
+    <input type="text" placeholder="🔍 Search anything..." />
+    <select>
+      <option value="all">All Categories</option>
+      <option value="scholarships">Scholarships</option>
+      <option value="education">Education</option>
+      <option value="technology">Technology</option>
+    </select>
+    <button class="latest-btn">Search</button>
+  </section>
+
+  <!-- Highlighted Features -->
+  <section class="card-grid">
     <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-scholarships.jpg" class="card-thumb" alt="Scholarships">
-      <h3>Scholarships</h3>
-      <p>Discover the latest fully funded opportunities for BS, MPhil, and more.</p>
-      <a href="scholarships.html">🔗 Explore Scholarships</a>
+      <img src="assets/thumb-scholarship.jpg" class="card-thumb" alt="Scholarships">
+      <h3>Latest Scholarships</h3>
+      <p>Find the best fully funded programs for BS, MPhil, and more.</p>
+      <a href="scholarships.html">🎓 Explore</a>
     </div>
     <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-education.jpg" class="card-thumb" alt="Education">
-      <h3>Education</h3>
-      <p>Access top online courses, learning guides, and academic resources.</p>
-      <a href="education.html">📘 Start Learning</a>
+      <img src="assets/thumb-edu.jpg" class="card-thumb" alt="Education">
+      <h3>Educational Resources</h3>
+      <p>Learn Python, AI, ML and other key academic tools with free resources.</p>
+      <a href="education.html">📘 Learn Now</a>
     </div>
     <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-technology.jpg" class="card-thumb" alt="Technology">
-      <h3>Technology</h3>
-      <p>Stay updated with the latest tools, student tech, and innovation news.</p>
-      <a href="technology.html">🖥️ See Tech Updates</a>
+      <img src="assets/thumb-tech.jpg" class="card-thumb" alt="Technology">
+      <h3>Tech for Students</h3>
+      <p>Stay ahead with tools, apps, and tech that boost learning and life.</p>
+      <a href="technology.html">💻 Discover</a>
     </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section data-aos="fade-up" style="text-align: center; padding: 2rem 1rem;">
+    <h3>📬 Subscribe for Updates</h3>
+    <p>Get latest scholarships, tech tips and learning tools in your inbox.</p>
+    <form style="max-width: 400px; margin: auto;">
+      <input type="email" placeholder="Enter your email" style="width: 100%; padding: 0.6rem; border-radius: 6px; margin-bottom: 0.5rem; border: 1px solid #ccc;">
+      <button class="latest-btn" type="submit">Subscribe</button>
+    </form>
   </section>
 </main>
 
