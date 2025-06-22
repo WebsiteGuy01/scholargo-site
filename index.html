@@ -1,34 +1,41 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ScholarGo</title>
-  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - ScholarGo</title>
+  <meta name="description" content="Welcome to ScholarGo – Explore scholarships, education resources, and tech updates for students.">
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-  <!-- Sidebar (Mobile Only) -->
-<div id="sidebar" class="sidebar">
+<!-- Sidebar (Mobile Only) -->
+<div id="sidebar" class="sidebar mobile-only">
   <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   <a href="index.html">Home</a>
   <a href="scholarships.html">Scholarships</a>
-  <a href="technology.html">Technology</a>
   <a href="education.html">Education</a>
+  <a href="technology.html">Technology</a>
   <a href="contact.html">Contact</a>
   <a href="about.html">About</a>
   <a href="privacy-policy.html">Privacy Policy</a>
 </div>
 
-<!-- Overlay -->
 <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
 <!-- Header -->
 <header class="site-header">
-  <!-- Sidebar toggle on mobile -->
-  <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+  <button class="menu-btn mobile-only" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+
+  <nav class="main-nav desktop-only top-nav">
+    <a href="index.html">Home</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="education.html">Education</a>
+    <a href="technology.html">Technology</a>
+  </nav>
 
   <a href="index.html" class="brand">
     <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
@@ -38,15 +45,6 @@
     </div>
   </a>
 
-  <!-- Top nav for desktop only -->
-  <nav class="main-nav desktop-only">
-    <a href="scholarships.html">Scholarships</a>
-    <a href="technology.html">Technology</a>
-    <a href="education.html">Education</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
   <div class="right-controls">
     <button id="theme-toggle" class="theme-toggle" title="Toggle Dark/Light Mode">
       <i class="fas fa-moon"></i>
@@ -54,30 +52,35 @@
   </div>
 </header>
 
-  <main>
-    <section data-aos="fade-up">
-      <h2>Welcome to ScholarGo</h2>
-      <p>Find the latest opportunities and updates.</p>  
-      
-      <section data-aos="fade-up" data-aos-delay="200">
-  <h3 style="margin-top: 2rem;">Connect with us:</h3>
-  <div class="social-icons">
-    <a href="https://www.youtube.com/@scholarshipportalofficial" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.facebook.com/share/18rYAQAa3g/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.instagram.com/scholarshipportalofficial?igsh=Y2FzbjRyd3ZmMGFo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://x.com/Scholar_portal?t=sXw4oexIAZoiwq222CbaoQ&s=09" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://t.me/scholarshipportalofficial" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-    <a href="https://m.me/683992234795939?source=qr_link_share" target="_blank" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
-  </div>
-        
-          
-</section>
+<main>
+  <section data-aos="fade-down">
+    <h2>📚 Welcome to ScholarGo</h2>
+    <p>Your one-stop hub for scholarships, educational tools, and tech resources for students.</p>
+  </section>
 
-    </section>
-  </main>
+  <section class="card-grid" id="home-sections">
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-scholarships.jpg" class="card-thumb" alt="Scholarships">
+      <h3>Scholarships</h3>
+      <p>Discover the latest fully funded opportunities for BS, MPhil, and more.</p>
+      <a href="scholarships.html">🔗 Explore Scholarships</a>
+    </div>
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-education.jpg" class="card-thumb" alt="Education">
+      <h3>Education</h3>
+      <p>Access top online courses, learning guides, and academic resources.</p>
+      <a href="education.html">📘 Start Learning</a>
+    </div>
+    <div class="card" data-aos="fade-up">
+      <img src="assets/thumb-technology.jpg" class="card-thumb" alt="Technology">
+      <h3>Technology</h3>
+      <p>Stay updated with the latest tools, student tech, and innovation news.</p>
+      <a href="technology.html">🖥️ See Tech Updates</a>
+    </div>
+  </section>
+</main>
 
-  <!-- Footer -->
- <footer class="site-footer">
+<footer class="site-footer">
   <p>&copy; 2025 ScholarGo. All rights reserved.</p>
   <div class="footer-links">
     <a href="about.html">About</a>
@@ -86,25 +89,39 @@
   </div>
 </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ duration: 600, easing: 'ease-out-cubic' });
-    });
-  </script>
-  <script src="js/theme.js"></script>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
-    });
+  AOS.init({ duration: 700, easing: 'ease-out-cubic' });
+  function toggleSidebar() {
+    document.body.classList.toggle("sidebar-open");
   }
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
 </script>
+
+<style>
+.top-nav {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 0 0 8px 8px;
+  z-index: 1000;
+  display: flex;
+  gap: 1rem;
+}
+.top-nav a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+.top-nav a:hover {
+  color: var(--secondary);
+}
+</style>
+
 </body>
 </html>
