@@ -52,25 +52,31 @@
     <section class="search-section" data-aos="fade-up">
       <input type="text" id="searchInput" placeholder="🔍 Search scholarships..." onkeyup="filterScholarships()" />
       <button onclick="sortScholarships()" class="latest-btn">🎯 Latest Scholarships</button>
+      <select id="categoryFilter" onchange="filterScholarships()" title="Filter by degree" style="margin-top: 1rem;">
+  <option value="all">🎓 All Categories</option>
+  <option value="bs">BS</option>
+  <option value="mphil">MPhil</option>
+  <option value="fellowship">Fellowship</option>
+</select>
+
     </section>
 
     <!-- Scholarship Cards -->
-    <section id="scholarship-list" class="card-grid">
-      <div class="card" data-aos="fade-up" data-date="2025-06-20">
-        <h3>DAAD Germany Scholarships 2025</h3>
-        <p>Fully funded for international students. Includes tuition, travel, and monthly stipend.</p>
-        <a href="https://daad.de" target="_blank">🔗 Apply Now</a>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="100" data-date="2025-06-10">
-        <h3>Fulbright USA Masters Program</h3>
-        <p>Study in the US. All majors eligible. Full funding. Deadline: Aug 30</p>
-        <a href="#">🔗 View Details</a>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200" data-date="2025-06-15">
-        <h3>Australia Awards 2025</h3>
-        <p>Full scholarships for Australian universities. Includes flights, tuition, and stipend.</p>
-        <a href="#">🔗 Learn More</a>
-      </div>
+  <div class="card" data-aos="fade-up" data-date="2025-06-20" data-category="bs">
+  <h3>DAAD Germany Scholarships 2025</h3>
+  ...
+</div>
+
+<div class="card" data-aos="fade-up" data-date="2025-06-10" data-category="mphil">
+  <h3>Fulbright USA Masters Program</h3>
+  ...
+</div>
+
+<div class="card" data-aos="fade-up" data-date="2025-06-15" data-category="fellowship">
+  <h3>Australia Awards 2025</h3>
+  ...
+</div>
+
     </section>
 
     <!-- Social Icons -->
