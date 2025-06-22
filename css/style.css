@@ -46,9 +46,9 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  text-decoration: none;
   gap: 15px;
   color: white;
+  text-decoration: none;
 }
 
 .brand-logo {
@@ -82,11 +82,11 @@ body {
   cursor: pointer;
 }
 
-/* === Sidebar (Mobile) === */
+/* === Sidebar (Mobile Only) === */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px;
+  left: -100%;
   width: 250px;
   height: 100vh;
   background: var(--bg);
@@ -119,6 +119,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Sidebar open behavior */
 body.sidebar-open .sidebar {
   left: 0;
 }
@@ -268,15 +269,18 @@ h2, h3, p {
   text-align: center;
   padding: 0 1rem;
 }
-/* Hide nav or sidebar toggle on desktop */
+
+/* === Responsive Navigation Behavior === */
 @media screen and (min-width: 769px) {
+  /* Hide mobile nav/sidebar on desktop */
   .menu-btn,
   .sidebar,
-  #overlay,
-  .close-btn {
-    display: none;
+  .close-btn,
+  #overlay {
+    display: none !important;
   }
 
+  /* Desktop nav shown */
   .main-nav.desktop-only {
     display: flex;
     gap: 1rem;
@@ -290,6 +294,7 @@ h2, h3, p {
   font-weight: 600;
   padding: 0 0.5rem;
 }
+
 .main-nav a:hover {
   color: var(--primary);
 }
