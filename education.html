@@ -45,15 +45,7 @@
 
 <!-- Header -->
 <header class="site-header">
-  <button class="menu-btn" onclick="toggleSidebar()" title="Menu" aria-label="Open Navigation Menu"><i class="fas fa-bars"></i></button>
-  <a href="index.html" class="brand">
-    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
-    <div class="brand-text">
-      <h1>ScholarGo</h1>
-      <p>Free Courses & Student Tips</p>
-    </div>
-  </a>
-  <!-- Desktop navigation bar -->
+  <!-- Desktop nav: show only on desktop -->
   <nav class="main-nav desktop-nav" aria-label="Main navigation">
     <a href="index.html">Home</a>
     <a href="scholarships.html">Scholarships</a>
@@ -63,11 +55,18 @@
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
   </nav>
+  <button class="menu-btn" onclick="toggleSidebar()" title="Menu" aria-label="Open Navigation Menu"><i class="fas fa-bars"></i></button>
+  <a href="index.html" class="brand">
+    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+    <div class="brand-text">
+      <h1>ScholarGo</h1>
+      <p>Free Courses & Student Tips</p>
+    </div>
+  </a>
   <div class="right-controls">
     <button id="theme-toggle" class="theme-toggle" title="Toggle Theme" aria-label="Toggle Dark/Light Mode"><i class="fas fa-moon"></i></button>
   </div>
 </header>
-
 <main>
   <!-- Hero -->
   <section data-aos="fade-down">
