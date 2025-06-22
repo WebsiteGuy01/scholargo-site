@@ -298,3 +298,9 @@ h2, h3, p {
 .main-nav a:hover {
   color: var(--primary);
 }
+/* Force hide desktop nav on small screens */
+@media screen and (max-width: 768px) {
+  .main-nav.desktop-only {
+    display: none !important;
+  }
+}
