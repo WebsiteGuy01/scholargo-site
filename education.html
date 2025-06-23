@@ -5,39 +5,76 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Education - ScholarGo</title>
-  <meta name="description" content="Explore quality free courses and learning material. Learn Python, AI, ML, and more with ScholarGo.">
+  <meta name="description" content="Access quality educational resources, free courses, and learning tools with ScholarGo.">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-<!-- Sidebar and Header copied exactly as index.html for consistency -->
-<!-- ... (use same sidebar, overlay, and header markup here) -->
+<!-- Sidebar (Mobile Only) -->
+<div id="sidebar" class="sidebar mobile-only">
+  <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="scholarships.html">Scholarships</a>
+  <a href="education.html">Education</a>
+  <a href="technology.html">Technology</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About</a>
+  <a href="privacy-policy.html">Privacy Policy</a>
+</div>
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Header -->
+<header class="site-header">
+  <button class="menu-btn mobile-only" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+  <nav class="main-nav desktop-only top-nav">
+    <a href="index.html">Home</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="education.html">Education</a>
+    <a href="technology.html">Technology</a>
+  </nav>
+
+  <a href="index.html" class="brand">
+    <img src="assets/logo1.png" alt="ScholarGo Logo" class="brand-logo" />
+    <div class="brand-text">
+      <h1>ScholarGo</h1>
+      <p>Unlock scholarships, grants & opportunities</p>
+    </div>
+  </a>
+
+  <div class="right-controls">
+    <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+  </div>
+</header>
 
 <main>
+  <!-- Hero -->
   <section data-aos="fade-down">
-    <h2>📚 Free Educational Resources</h2>
-    <p>Access top quality courses and tutorials curated for students across disciplines.</p>
+    <h2>📚 Education Resources</h2>
+    <p>Explore free learning materials, online courses, and student-friendly tools to boost your knowledge.</p>
   </section>
 
+  <!-- Search + Filter -->
   <section class="search-section" data-aos="fade-up">
-    <input type="text" id="eduSearchInput" placeholder="🔍 Search courses..." onkeyup="filterEducation()" />
-    <select id="eduCategoryFilter" onchange="filterEducation()">
-      <option value="all">All Topics</option>
+    <input type="text" id="searchInput" placeholder="🔍 Search education resources..." onkeyup="filterEducation()" />
+    <select id="categoryFilter" onchange="filterEducation()">
+      <option value="all">📘 All Topics</option>
       <option value="python">Python</option>
       <option value="ai">AI</option>
-      <option value="ml">ML</option>
-      <option value="webdev">Web Dev</option>
+      <option value="ml">Machine Learning</option>
     </select>
     <button onclick="sortEducation()" class="latest-btn">🕓 Latest First</button>
   </section>
 
-  <section id="edu-list" class="card-grid">
+  <!-- Cards -->
+  <section id="education-list" class="card-grid">
     <p>Loading resources...</p>
   </section>
 </main>
 
+<!-- Footer -->
 <footer class="site-footer">
   <p>&copy; 2025 ScholarGo. All rights reserved.</p>
   <div class="footer-links">
@@ -47,59 +84,60 @@
   </div>
 </footer>
 
+<!-- Scripts -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-AOS.init({ duration: 700, easing: 'ease-out-cubic' });
+  AOS.init({ duration: 700, easing: 'ease-out-cubic' });
 
-function toggleSidebar() {
-  document.body.classList.toggle("sidebar-open");
-}
+  function toggleSidebar() {
+    document.body.classList.toggle("sidebar-open");
+  }
 
-document.getElementById("theme-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
-
-function filterEducation() {
-  const query = document.getElementById("eduSearchInput").value.toLowerCase();
-  const category = document.getElementById("eduCategoryFilter").value;
-  const cards = document.querySelectorAll("#edu-list .card");
-
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    const cardCategory = card.dataset.category;
-    const matchText = text.includes(query);
-    const matchCategory = category === "all" || cardCategory === category;
-    card.style.display = matchText && matchCategory ? "block" : "none";
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
   });
-}
 
-function sortEducation() {
-  const list = document.getElementById("edu-list");
-  const cards = Array.from(list.querySelectorAll(".card"));
-  cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
-  cards.forEach(card => list.appendChild(card));
-}
+  function filterEducation() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const category = document.getElementById("categoryFilter").value;
+    const cards = document.querySelectorAll("#education-list .card");
 
-fetch("assets/education.json")
-  .then(res => res.json())
-  .then(posts => {
-    const list = document.getElementById("edu-list");
-    list.innerHTML = "";
-    posts.forEach(post => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.setAttribute("data-date", post.date);
-      card.setAttribute("data-category", post.category.toLowerCase());
-
-      card.innerHTML = `
-        <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
-        <h3>${post.title}</h3>
-        <p>${post.description}</p>
-        <a href="${post.link}" target="_blank">📘 Learn Now</a>
-      `;
-      list.appendChild(card);
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      const cardCategory = card.dataset.category;
+      const matchText = text.includes(query);
+      const matchCategory = category === "all" || cardCategory === category;
+      card.style.display = matchText && matchCategory ? "block" : "none";
     });
-  });
+  }
+
+  function sortEducation() {
+    const list = document.getElementById("education-list");
+    const cards = Array.from(list.querySelectorAll(".card"));
+    cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+    cards.forEach(card => list.appendChild(card));
+  }
+
+  fetch("assets/education.json")
+    .then(res => res.json())
+    .then(posts => {
+      const list = document.getElementById("education-list");
+      list.innerHTML = "";
+      posts.forEach(post => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("data-date", post.date);
+        card.setAttribute("data-category", post.category.toLowerCase());
+
+        card.innerHTML = `
+          <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
+          <h3>${post.title}</h3>
+          <p>${post.description}</p>
+          <a href="${post.link}" target="_blank">📘 View Resource</a>
+        `;
+        list.appendChild(card);
+      });
+    });
 </script>
 </body>
 </html>
