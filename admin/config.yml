@@ -84,3 +84,13 @@ collections:
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Content", name: "body", widget: "markdown"}
+
+# Optional config enhancements
+publish_mode: editorial_workflow
+locale: 'en'
+show_preview_links: true
+
+# Media Library Options
+display_url: https://scholargo.netlify.app
+editor:
+  preview: true
