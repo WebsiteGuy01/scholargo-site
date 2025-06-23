@@ -69,24 +69,21 @@
 
   <!-- Highlighted Features -->
   <section class="card-grid">
-    <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-scholarship.png" class="card-thumb" alt="Scholarships">
+    <a href="scholarships.html" class="card card-link" data-aos="fade-up">
+      <img src="assets/thumb-scholarship.jpg" class="card-thumb" alt="Scholarships">
       <h3>Latest Scholarships</h3>
       <p>Find the best fully funded programs for BS, MPhil, and more.</p>
-      <a href="scholarships.html">🎓 Explore</a>
-    </div>
-    <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-edu.png" class="card-thumb" alt="Education">
+    </a>
+    <a href="education.html" class="card card-link" data-aos="fade-up">
+      <img src="assets/thumb-edu.jpg" class="card-thumb" alt="Education">
       <h3>Educational Resources</h3>
       <p>Learn Python, AI, ML and other key academic tools with free resources.</p>
-      <a href="education.html">📘 Learn Now</a>
-    </div>
-    <div class="card" data-aos="fade-up">
-      <img src="assets/thumb-tech.png" class="card-thumb" alt="Technology">
+    </a>
+    <a href="technology.html" class="card card-link" data-aos="fade-up">
+      <img src="assets/thumb-tech.jpg" class="card-thumb" alt="Technology">
       <h3>Tech for Students</h3>
       <p>Stay ahead with tools, apps, and tech that boost learning and life.</p>
-      <a href="technology.html">💻 Discover</a>
-    </div>
+    </a>
   </section>
 
   <!-- Newsletter Signup -->
@@ -140,6 +137,18 @@
 }
 .top-nav a:hover {
   color: var(--secondary);
+}
+.card-link {
+  color: inherit;
+  text-decoration: none;
+}
+.card-link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.card-link h3,
+.card-link p {
+  pointer-events: none;
 }
 </style>
 
