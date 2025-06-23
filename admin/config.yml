@@ -10,20 +10,50 @@ site_url: https://scholargo.netlify.app
 logo_url: /assets/logo1.png
 
 collections:
-  - name: "posts"
-    label: "Blog Posts"
-    folder: "posts"
+  - name: "scholarships"
+    label: "Scholarships"
+    folder: "posts/scholarships"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Link", name: "link", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  - name: "education"
+    label: "Education"
+    folder: "posts/education"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "technology"
+    label: "Technology"
+    folder: "posts/technology"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Update", "Innovation", "Tool"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "pages"
     label: "Site Pages"
