@@ -15,6 +15,8 @@ collections:
     folder: "posts/scholarships"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "scholarships/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -30,6 +32,8 @@ collections:
     folder: "posts/education"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "education/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -45,6 +49,8 @@ collections:
     folder: "posts/technology"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "technology/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -68,6 +74,13 @@ collections:
       - label: "Privacy Policy"
         name: "privacy"
         file: "privacy-policy.html"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+
+      - label: "Contact Page"
+        name: "contact"
+        file: "contact.html"
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Content", name: "body", widget: "markdown"}
