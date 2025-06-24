@@ -86,6 +86,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 700, easing: 'ease-out-cubic' });
@@ -119,7 +120,7 @@
     cards.forEach(card => list.appendChild(card));
   }
 
-  fetch("assets/posts.json")
+  fetch("posts/scholarships/index.json")
     .then(res => res.json())
     .then(posts => {
       const list = document.getElementById("scholarship-list");
@@ -130,10 +131,13 @@
         card.setAttribute("data-date", post.date);
         card.setAttribute("data-category", post.category.toLowerCase());
 
+        const bodyHtml = marked.parse(post.body || "");
+
         card.innerHTML = `
           <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
           <h3>${post.title}</h3>
           <p>${post.description}</p>
+          <div class="markdown-body">${bodyHtml}</div>
           <a href="${post.link}" target="_blank">🔗 Apply Now</a>
         `;
         list.appendChild(card);
