@@ -148,26 +148,33 @@
     cards.forEach(card => list.appendChild(card));
   }
 
-  fetch("assets/education.json")
-    .then(res => res.json())
+  fetch("/posts/education/index.json")  
+   fetch("assets/education.json")
+  .then(res => res.json())
     .then(posts => {
-      const list = document.getElementById("education-list");
-      list.innerHTML = "";
-      posts.forEach(post => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.setAttribute("data-date", post.date);
-        card.setAttribute("data-category", post.category.toLowerCase());
+    const list = document.getElementById("education-list");
+    list.innerHTML = "";
+    posts.forEach(post => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.setAttribute("data-date", post.date);
+      card.setAttribute("data-category", post.category.toLowerCase());
 
-        card.innerHTML = `
-          <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
-          <h3>${post.title}</h3>
-          <p>${post.description}</p>
-          <a href="${post.link}" target="_blank">📖 Learn More</a>
-        `;
-        list.appendChild(card);
-      });
+      const bodyHtml = marked.parse(post.body || "");
+
+      card.innerHTML = `
+        <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
+        <h3>${post.title}</h3>
+        <p>${post.description}</p>
+        <div class="markdown-body">${bodyHtml}</div>
+        <a href="${post.link}" target="_blank">📘 Learn More</a>
+      `;
+      list.appendChild(card);
     });
+  });
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </body>
 </html>
