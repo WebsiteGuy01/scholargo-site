@@ -85,6 +85,13 @@
       <p>Stay ahead with tools, apps, and tech that boost learning and life.</p>
     </a>
   </section>
+  <!-- Latest from Each Section -->
+<section id="latest-sections" class="card-grid">
+  <div class="category-block" id="latest-scholarships"></div>
+  <div class="category-block" id="latest-education"></div>
+  <div class="category-block" id="latest-technology"></div>
+</section>
+
 
   <!-- Newsletter Signup -->
   <section data-aos="fade-up" style="text-align: center; padding: 2rem 1rem;">
@@ -115,6 +122,33 @@
   document.getElementById("theme-toggle").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
   });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const createCard = (post) => `
+    <div class="card" data-date="${post.date}" data-category="${post.category.toLowerCase()}">
+      <img src="${post.thumbnail}" alt="${post.title}" class="card-thumb" />
+      <h3>${post.title}</h3>
+      <p>${post.description}</p>
+      <a href="${post.link}" target="_blank">📖 Learn More</a>
+    </div>`;
+
+  const loadLatest = (url, containerId, title, seeAllLink) => {
+    fetch(url)
+      .then(res => res.json())
+      .then(posts => {
+        const section = document.getElementById(containerId);
+        section.innerHTML = `
+          <h3>${title}</h3>
+          <div class="card-grid">${posts.slice(0, 3).map(createCard).join("")}</div>
+          <a href="${seeAllLink}" class="latest-btn" style="margin-top:1rem;display:inline-block">See All</a>
+        `;
+      });
+  };
+
+  loadLatest("posts/scholarships/index.json", "latest-scholarships", "🎓 Latest Scholarships", "scholarships.html");
+  loadLatest("posts/education/index.json", "latest-education", "📘 Latest Education Resources", "education.html");
+  loadLatest("posts/technology/index.json", "latest-technology", "💡 Latest Tech Tools", "technology.html");
 </script>
 
 <style>
