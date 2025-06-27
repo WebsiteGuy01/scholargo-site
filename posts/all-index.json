@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Free Python Programming Course for Beginners",
+    "date": "2025-06-23T00:00:00.000Z",
+    "category": "Course",
+    "description": "Start learning Python from scratch with this free beginner-level course.",
+    "tags": [
+      "Python",
+      "Programming",
+      "Free"
+    ],
+    "slug": "sample-education",
+    "link": "/post.html?post=sample-education",
+    "thumbnail": "/assets/uploads/edu-thumb.png",
+    "section": "education"
+  },
+  {
+    "title": "Fully Funded BS Scholarship in Germany",
+    "date": "2025-06-23T00:00:00.000Z",
+    "category": "BS",
+    "description": "Apply now for a fully funded Bachelor’s degree scholarship in Germany for international students.",
+    "tags": [
+      "Germany",
+      "International",
+      "2025"
+    ],
+    "slug": "sample-scholarship",
+    "link": "/post.html?post=sample-scholarship",
+    "thumbnail": "/assets/uploads/scholarship-thumb.png",
+    "section": "scholarships"
+  },
+  {
+    "title": "Top 5 AI Tools Changing Education in 2025",
+    "date": "2025-06-23T00:00:00.000Z",
+    "category": "Innovation",
+    "description": "Discover how new AI tools are transforming the way we teach and learn in 2025.",
+    "tags": [
+      "AI",
+      "Education",
+      "Tools"
+    ],
+    "slug": "sample-technology",
+    "link": "/post.html?post=sample-technology",
+    "thumbnail": "/assets/uploads/tech-thumb.png",
+    "section": "technology"
+  }
+]
