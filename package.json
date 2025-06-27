@@ -2,5 +2,24 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "marked": "^16.0.0"
-  }
+  },
+  "name": "scholargo-site",
+  "version": "1.0.0",
+  "main": "generate-index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebsiteGuy01/scholargo-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebsiteGuy01/scholargo-site/issues"
+  },
+  "homepage": "https://github.com/WebsiteGuy01/scholargo-site#readme",
+  "description": ""
 }
