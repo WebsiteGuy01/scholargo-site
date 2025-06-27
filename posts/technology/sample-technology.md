@@ -1,7 +1,7 @@
 ---
 title: "Top 5 AI Tools Changing Education in 2025"
 date: 2025-06-23
-category: "Innovation"
+category: "Technology"
 tags: ["AI", "Education", "Tools"]
 thumbnail: /assets/uploads/tech-thumb.png
 description: "Discover how new AI tools are transforming the way we teach and learn in 2025."
