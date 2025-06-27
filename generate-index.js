@@ -36,7 +36,7 @@ function groupPosts(files) {
     const post = {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
-      category: data.category || section,
+      category: section.charAt(0).toUpperCase() + section.slice(1), // ✅ Always matches folder
       description: data.description || '',
       tags: data.tags || [],
       slug: slug,
