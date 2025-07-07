@@ -19,20 +19,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dirtyHTML = marked.parse(mdText);
     const html = DOMPurify.sanitize(dirtyHTML);
 
-    // Inject content with checks
+    // ✅ Hide skeleton and show real content
+    const skeleton = document.querySelector(".post-skeleton");
+    if (skeleton) skeleton.style.display = "none";
+
     const titleEl = document.querySelector(".post-title");
-    const dateEl = document.querySelector(".post-date");
-    const catEl = document.querySelector(".post-category");
+    const metaP = titleEl?.nextElementSibling;
+    const dateEl = metaP?.querySelector(".post-date");
+    const catEl = metaP?.querySelector(".post-category");
     const thumbEl = document.querySelector(".post-thumbnail");
     const bodyEl = document.querySelector(".post-body");
 
-    if (titleEl) titleEl.textContent = post.title;
+    if (titleEl) {
+      titleEl.style.display = "block";
+      titleEl.textContent = post.title;
+    }
+    if (metaP) metaP.style.display = "block";
     if (dateEl) dateEl.textContent = formatDate(post.date);
     if (catEl) catEl.textContent = post.category;
-    if (thumbEl) thumbEl.src = post.thumbnail || "/assets/default-thumb.jpg";
-    if (bodyEl) bodyEl.innerHTML = html;
+    if (thumbEl) {
+      thumbEl.style.display = "block";
+      thumbEl.src = post.thumbnail || "/assets/default-thumb.jpg";
+    }
+    if (bodyEl) {
+      bodyEl.style.display = "block";
+      bodyEl.innerHTML = html;
+    }
 
-    // SEO: <title> and meta tags
+    // SEO and meta updates
     document.title = `${post.title} – ScholarGo`;
     updateMeta("og:title", `${post.title} – ScholarGo`);
     updateMeta("og:description", post.description || "Explore this opportunity on ScholarGo.");
@@ -59,8 +73,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Structured Data (JSON-LD)
+    // Structured data (JSON-LD)
     updateStructuredData(post);
+
+    console.log("Post loaded:", post);
+    console.log("Markdown path:", mdPath);
 
   } catch (err) {
     console.error("Post loading error:", err);
