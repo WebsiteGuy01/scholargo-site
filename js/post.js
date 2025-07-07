@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!post) return showError("Post not found.");
 
-    const mdPath = `/posts/${post.category.toLowerCase()}/${slug}.md`;
+    const mdPath = `/posts/${post.section}/${slug}.md`;
     const mdRes = await fetch(mdPath);
 
     if (!mdRes.ok) return showError("Markdown file missing.");
@@ -19,25 +19,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     const mdText = await mdRes.text();
     const html = marked.parse(mdText);
 
-    // Inject content
+    // ✅ Inject post content into HTML
     document.querySelector(".post-title").textContent = post.title;
     document.querySelector(".post-date").textContent = formatDate(post.date);
     document.querySelector(".post-category").textContent = post.category;
     document.querySelector(".post-thumbnail").src = post.thumbnail || "/assets/default-thumb.jpg";
     document.querySelector(".post-body").innerHTML = html;
 
-    // Dynamically update <title>
+    // ✅ Update <title> and SEO meta tags
     document.title = `${post.title} – ScholarGo`;
-
-    // Dynamically update Open Graph meta tags
     updateMeta("og:title", `${post.title} – ScholarGo`);
     updateMeta("og:description", post.description || "Explore this opportunity on ScholarGo.");
     updateMeta("og:image", post.thumbnail || "https://scholargo.netlify.app/assets/og-image.jpg");
     updateMeta("og:url", window.location.href);
     updateMeta("twitter:card", "summary_large_image");
 
+    // ✅ Social sharing buttons (if present)
+    if (document.getElementById("share-x")) {
+      document.getElementById("share-x").href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`;
+    }
+    if (document.getElementById("share-whatsapp")) {
+      document.getElementById("share-whatsapp").href = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}`;
+    }
+    if (document.getElementById("copy-link")) {
+      document.getElementById("copy-link").addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href);
+        document.getElementById("copy-msg").textContent = "🔗 Link copied!";
+      });
+    }
+
+    // 🔍 Optional debug log
+    console.log("Loaded post:", post);
+    console.log("Markdown file path:", mdPath);
+
   } catch (err) {
-    console.error(err);
+    console.error("Post loading error:", err);
     showError("Something went wrong.");
   }
 });
