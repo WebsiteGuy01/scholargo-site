@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", async () => {
+# Recreate the complete post.js file with all improvements after environment reset
+
+complete_post_js = """document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get("post");
 
@@ -19,14 +21,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const mdText = await mdRes.text();
     const html = marked.parse(mdText);
 
-    // ✅ Inject post content into HTML
+    // Inject content into the page
     document.querySelector(".post-title").textContent = post.title;
     document.querySelector(".post-date").textContent = formatDate(post.date);
     document.querySelector(".post-category").textContent = post.category;
     document.querySelector(".post-thumbnail").src = post.thumbnail || "/assets/default-thumb.jpg";
     document.querySelector(".post-body").innerHTML = html;
 
-    // ✅ Update <title> and SEO meta tags
+    // SEO: Dynamic title and meta
     document.title = `${post.title} – ScholarGo`;
     updateMeta("og:title", `${post.title} – ScholarGo`);
     updateMeta("og:description", post.description || "Explore this opportunity on ScholarGo.");
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateMeta("og:url", window.location.href);
     updateMeta("twitter:card", "summary_large_image");
 
-    // ✅ Social sharing buttons (if present)
+    // Social share links
     if (document.getElementById("share-x")) {
       document.getElementById("share-x").href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`;
     }
@@ -48,9 +50,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // 🔍 Optional debug log
-    console.log("Loaded post:", post);
-    console.log("Markdown file path:", mdPath);
+    // Structured data (JSON-LD)
+    updateStructuredData(post);
+
+    // Log for debug
+    console.log("Post loaded:", post);
+    console.log("Markdown path:", mdPath);
 
   } catch (err) {
     console.error("Post loading error:", err);
@@ -77,3 +82,44 @@ function updateMeta(property, content) {
   }
   meta.setAttribute("content", content);
 }
+
+function updateStructuredData(post) {
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": `${post.title} – ScholarGo`,
+    "description": post.description || "",
+    "image": post.thumbnail || "https://scholargo.netlify.app/assets/og-image.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "ScholarGo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ScholarGo",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://scholargo.netlify.app/assets/logo1.png"
+      }
+    },
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": window.location.href
+    }
+  };
+
+  const scriptTag = document.getElementById("ld-json");
+  if (scriptTag) {
+    scriptTag.textContent = JSON.stringify(ld, null, 2);
+  }
+}
+"""
+
+# Save to downloadable file
+file_path = "/mnt/data/post.js"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(complete_post_js)
+
+file_path
