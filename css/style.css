@@ -414,3 +414,50 @@ a:focus {
   font-size: 1.4rem;
   color: var(--primary);
 }
+/* Skeleton loader styles */
+.post-skeleton {
+  animation: pulse 1.5s infinite;
+  padding: 2rem 1rem;
+}
+
+.skeleton-title,
+.skeleton-meta,
+.skeleton-thumb,
+.skeleton-lines {
+  background: #eee;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-title {
+  height: 2rem;
+  width: 60%;
+}
+
+.skeleton-meta {
+  height: 1rem;
+  width: 30%;
+}
+
+.skeleton-thumb {
+  height: 200px;
+  width: 100%;
+}
+
+.skeleton-lines {
+  height: 6rem;
+  width: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #eee,
+    #eee 10px,
+    #ddd 10px,
+    #ddd 20px
+  );
+}
+
+@keyframes pulse {
+  0% { background-color: #f0f0f0; }
+  50% { background-color: #e0e0e0; }
+  100% { background-color: #f0f0f0; }
+}
