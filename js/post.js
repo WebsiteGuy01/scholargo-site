@@ -1,6 +1,4 @@
-# Recreate the complete post.js file with all improvements after environment reset
-
-complete_post_js = """document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get("post");
 
@@ -15,20 +13,26 @@ complete_post_js = """document.addEventListener("DOMContentLoaded", async () => 
 
     const mdPath = `/posts/${post.section}/${slug}.md`;
     const mdRes = await fetch(mdPath);
-
     if (!mdRes.ok) return showError("Markdown file missing.");
 
     const mdText = await mdRes.text();
-    const html = marked.parse(mdText);
+    const dirtyHTML = marked.parse(mdText);
+    const html = DOMPurify.sanitize(dirtyHTML);
 
-    // Inject content into the page
-    document.querySelector(".post-title").textContent = post.title;
-    document.querySelector(".post-date").textContent = formatDate(post.date);
-    document.querySelector(".post-category").textContent = post.category;
-    document.querySelector(".post-thumbnail").src = post.thumbnail || "/assets/default-thumb.jpg";
-    document.querySelector(".post-body").innerHTML = html;
+    // Inject content with checks
+    const titleEl = document.querySelector(".post-title");
+    const dateEl = document.querySelector(".post-date");
+    const catEl = document.querySelector(".post-category");
+    const thumbEl = document.querySelector(".post-thumbnail");
+    const bodyEl = document.querySelector(".post-body");
 
-    // SEO: Dynamic title and meta
+    if (titleEl) titleEl.textContent = post.title;
+    if (dateEl) dateEl.textContent = formatDate(post.date);
+    if (catEl) catEl.textContent = post.category;
+    if (thumbEl) thumbEl.src = post.thumbnail || "/assets/default-thumb.jpg";
+    if (bodyEl) bodyEl.innerHTML = html;
+
+    // SEO: <title> and meta tags
     document.title = `${post.title} – ScholarGo`;
     updateMeta("og:title", `${post.title} – ScholarGo`);
     updateMeta("og:description", post.description || "Explore this opportunity on ScholarGo.");
@@ -36,26 +40,27 @@ complete_post_js = """document.addEventListener("DOMContentLoaded", async () => 
     updateMeta("og:url", window.location.href);
     updateMeta("twitter:card", "summary_large_image");
 
-    // Social share links
-    if (document.getElementById("share-x")) {
-      document.getElementById("share-x").href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`;
-    }
-    if (document.getElementById("share-whatsapp")) {
-      document.getElementById("share-whatsapp").href = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}`;
-    }
-    if (document.getElementById("copy-link")) {
-      document.getElementById("copy-link").addEventListener("click", () => {
-        navigator.clipboard.writeText(window.location.href);
-        document.getElementById("copy-msg").textContent = "🔗 Link copied!";
+    // Share buttons
+    const shareX = document.getElementById("share-x");
+    const shareWhatsApp = document.getElementById("share-whatsapp");
+    const copyBtn = document.getElementById("copy-link");
+    const copyMsg = document.getElementById("copy-msg");
+
+    if (shareX) shareX.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`;
+    if (shareWhatsApp) shareWhatsApp.href = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}`;
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+          if (copyMsg) copyMsg.textContent = "🔗 Link copied!";
+        } else {
+          alert("Copy not supported. Please manually copy the URL.");
+        }
       });
     }
 
-    // Structured data (JSON-LD)
+    // Structured Data (JSON-LD)
     updateStructuredData(post);
-
-    // Log for debug
-    console.log("Post loaded:", post);
-    console.log("Markdown path:", mdPath);
 
   } catch (err) {
     console.error("Post loading error:", err);
@@ -65,7 +70,9 @@ complete_post_js = """document.addEventListener("DOMContentLoaded", async () => 
 
 function showError(message) {
   const container = document.querySelector(".post-container");
-  container.innerHTML = `<div class="error"><h2>${message}</h2></div>`;
+  if (container) {
+    container.innerHTML = `<div class="error"><h2>${message}</h2></div>`;
+  }
 }
 
 function formatDate(dateString) {
@@ -115,11 +122,3 @@ function updateStructuredData(post) {
     scriptTag.textContent = JSON.stringify(ld, null, 2);
   }
 }
-"""
-
-# Save to downloadable file
-file_path = "/mnt/data/post.js"
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(complete_post_js)
-
-file_path
