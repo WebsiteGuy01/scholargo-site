@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!mdRes.ok) return showError("Markdown file missing.");
 
     const mdText = await mdRes.text();
-    const dirtyHTML = marked.parse(mdText);
+    // 🔧 Strip frontmatter (--- block) before converting to HTML
+const stripped = mdText.replace(/^---[\s\S]*?---/, '').trim();
+const dirtyHTML = marked.parse(stripped);
+
     const html = DOMPurify.sanitize(dirtyHTML);
 
     // ✅ Hide skeleton and show real content
