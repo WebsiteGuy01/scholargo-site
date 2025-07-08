@@ -213,29 +213,34 @@
   pointer-events: none;
 }
 </style>
+<!-- Netlify Identity Widget -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      // 👇 Show reset password prompt if needed
-      const hash = window.location.hash;
-      if (hash && hash.includes("confirmation_token")) {
-        window.netlifyIdentity.open("confirmation");
-      } else if (hash.includes("invite_token")) {
-        window.netlifyIdentity.open("invite");
-      } else if (hash.includes("recover_token")) {
-        window.netlifyIdentity.open("recover");
-      }
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        const hash = window.location.hash;
 
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-    window.netlifyIdentity.init();
-  }
+        // ✅ Show proper popup depending on URL hash
+        if (hash.includes("invite_token")) {
+          window.netlifyIdentity.open("signup");
+        } else if (hash.includes("confirmation_token")) {
+          window.netlifyIdentity.open("confirmation");
+        } else if (hash.includes("recovery_token") || hash.includes("recovery_token=")) {
+          window.netlifyIdentity.open("recover");
+        }
+
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    }
+  });
 </script>
+
 
 </body>
 </html>
