@@ -58,6 +58,29 @@
 
       <p style="margin-top: 1.5rem;">We're based online — powered by chai ☕, curiosity, and your encouragement. Let’s keep growing together!</p>
     </section>
+    <section class="contact-form" data-aos="fade-up">
+  <h2>Get in Touch</h2>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact" />
+    <p class="hidden">
+      <label>Don’t fill this out: <input name="bot-field" /></label>
+    </p>
+    <p>
+      <label>Your Name:<br>
+      <input type="text" name="name" required /></label>
+    </p>
+    <p>
+      <label>Your Email:<br>
+      <input type="email" name="email" required /></label>
+    </p>
+    <p>
+      <label>Message:<br>
+      <textarea name="message" rows="5" required></textarea></label>
+    </p>
+    <p><button type="submit">Send Message</button></p>
+  </form>
+</section>
+
   </main>
 
   <!-- Footer -->
