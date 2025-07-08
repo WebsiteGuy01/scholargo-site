@@ -2,83 +2,95 @@ backend:
   name: git-gateway
   repo: WebsiteGuy01/scholargo-site
   branch: main
-  
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "posts"
-    create: true
-    slug: "{{slug}}"
-    preview_path: "post.html?post={{slug}}"
-    editor:
-      preview: true
-    fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Auto-generated if left blank" }
-      - { label: "Date", name: "date", widget: "datetime", required: true }
-      - label: "Author"
-        name: "author"
-        widget: "relation"
-        collection: "authors"
-        search_fields: ["name"]
-        value_field: "name"
-        display_fields: ["name"]
-        required: false
-      - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship", "Education", "Technology", "Grants"], required: true }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Description", name: "description", widget: "text", required: true }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: true }
-      - { label: "External Link", name: "link", widget: "string", required: false }
-      - { label: "Attachments", name: "attachments", widget: "file", multiple: true, required: false }
-      - { label: "Featured Post", name: "featured", widget: "boolean", default: false }
-      - { label: "Deadline", name: "deadline", widget: "datetime", required: false }
-      - { label: "Expire Date", name: "expire_date", widget: "datetime", required: false }
-      - { label: "Post Layout", name: "layout", widget: "select", options: ["standard", "spotlight", "video", "gallery"], default: "standard" }
-      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-      - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
-      - { label: "Structured Type", name: "structured_data_type", widget: "select", options: ["Article", "BlogPosting", "NewsArticle"], default: "Article" }
-      - { label: "Reading Time (min)", name: "reading_time", widget: "number", required: false, min: 1 }
-      - { label: "Language", name: "language", widget: "select", options: ["en", "ur", "ar"], default: "en" }
-      - { label: "Post Status", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
-      - label: "Body Content"
-        name: "body"
-        widget: "markdown"
-        required: true
+site_url: https://scholargo.netlify.app
+logo_url: /assets/logo1.png
 
-  - name: "authors"
-    label: "Authors"
-    folder: "authors"
+collections:
+  - name: "scholarships"
+    label: "Scholarships"
+    folder: "posts/scholarships"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "scholarships/{{slug}}"
     fields:
-      - { label: "Name", name: "name", widget: "string", required: true }
-      - { label: "Bio", name: "bio", widget: "text", required: false }
-      - { label: "Photo", name: "photo", widget: "image", required: false }
-      - { label: "Email", name: "email", widget: "string", required: false }
-      - { label: "Twitter", name: "twitter", widget: "string", required: false }
-      - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-      - { label: "Website", name: "website", widget: "string", required: false }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "education"
+    label: "Education"
+    folder: "posts/education"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "education/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "technology"
+    label: "Technology"
+    folder: "posts/technology"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    preview_path: "technology/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Update", "Innovation", "Tool"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "pages"
-    label: "Pages"
+    label: "Site Pages"
     files:
-      - label: "About"
+      - label: "About Page"
         name: "about"
         file: "about.html"
         fields:
-          - { label: "Page Content", name: "body", widget: "markdown" }
-      - label: "Contact"
-        name: "contact"
-        file: "contact.html"
-        fields:
-          - { label: "Page Content", name: "body", widget: "markdown" }
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+
       - label: "Privacy Policy"
         name: "privacy"
         file: "privacy-policy.html"
         fields:
-          - { label: "Page Content", name: "body", widget: "markdown" }
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+
+      - label: "Contact Page"
+        name: "contact"
+        file: "contact.html"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+
+# Optional config enhancements
+publish_mode: editorial_workflow
+locale: 'en'
+show_preview_links: true
+
+# Media Library Options
+display_url: https://scholargo.netlify.app
+editor:
+  preview: true
