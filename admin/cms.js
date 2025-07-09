@@ -1,27 +1,56 @@
-CMS.registerEventListener({
-  name: "preSave",
-  handler: async ({ entry }) => {
-    const summary = entry.get("data").get("summary");
-    const body = entry.get("data").get("body");
+CMS.registerWidget('aiSummary', createClass({
+  handleClick: async function () {
+    const body = this.props.entry.getIn(['data', 'body']);
+    if (!body || body.trim() === "") {
+      alert("Please write content in the Body first.");
+      return;
+    }
 
-    if (!summary && body && body.length > 100) {
-      try {
-        const response = await fetch("/.netlify/functions/generate-summary", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content: body }),
-        });
+    this.setState({ loading: true });
 
-        const data = await response.json();
-        if (data.summary) {
-          entry.get("data").set("summary", data.summary);
-          console.log("✅ AI summary generated.");
-        } else {
-          console.warn("⚠️ No summary returned from AI.");
-        }
-      } catch (err) {
-        console.error("❌ Error generating summary:", err);
+    const prompt = `Summarize the following content into 2 short sentences:\n\n${body}`;
+
+    try {
+      const res = await fetch("https://api.openai.com/v1/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+        },
+        body: JSON.stringify({
+          model: "text-davinci-003",
+          prompt: prompt,
+          max_tokens: 120,
+          temperature: 0.5
+        })
+      });
+
+      const json = await res.json();
+      const summary = json.choices?.[0]?.text?.trim();
+
+      if (summary) {
+        this.props.onChange(summary);
+        alert("✅ Summary generated!");
+      } else {
+        alert("⚠️ AI did not return a summary.");
       }
+    } catch (err) {
+      alert("❌ Error generating summary");
+      console.error(err);
+    } finally {
+      this.setState({ loading: false });
     }
   },
-});
+
+  render: function () {
+    const value = this.props.value || "";
+    return h('div', {},
+      h('textarea', {
+        value: value,
+        onChange: e => this.props.onChange(e.target.value),
+        placeholder: "AI-generated summary will appear here"
+      }),
+      h('button', {
+        type: 'button',
+        onClick: this.handleClick.bind(this),
+        disabled: this
