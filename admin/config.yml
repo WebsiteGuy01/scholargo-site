@@ -20,7 +20,7 @@ collections:
     label: "All Posts"
     folder: "posts"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.title}}"
     summary: "{{title}} | {{category}} | {{date}}"
     preview_path: "post.html?post={{slug}}"
     editor:
