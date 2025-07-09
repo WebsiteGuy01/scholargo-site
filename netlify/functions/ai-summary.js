@@ -1,40 +1,32 @@
 const fetch = require("node-fetch");
 
-exports.handler = async function (event) {
-  const { content } = JSON.parse(event.body || "{}");
+exports.handler = async (event) => {
+  const { body } = JSON.parse(event.body || "{}");
 
-  if (!content || content.length < 50) {
+  if (!body || body.length < 20) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Content too short for summary." }),
+      body: JSON.stringify({ error: "Post content too short to summarize." }),
     };
   }
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/completions", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, // safe, secure
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: "Summarize the following blog post in 1-2 sentences:",
-          },
-          {
-            role: "user",
-            content: content,
-          },
-        ],
-        max_tokens: 100,
+        model: "text-davinci-003",
+        prompt: `Summarize the following post in 2 concise sentences:\n\n${body}`,
+        max_tokens: 150,
+        temperature: 0.7,
       }),
     });
 
     const data = await response.json();
-    const summary = data.choices?.[0]?.message?.content || "No summary generated.";
+    const summary = data.choices?.[0]?.text?.trim() || "";
 
     return {
       statusCode: 200,
@@ -43,7 +35,7 @@ exports.handler = async function (event) {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Server error", details: error.message }),
+      body: JSON.stringify({ error: "Failed to contact OpenAI API" }),
     };
   }
 };
