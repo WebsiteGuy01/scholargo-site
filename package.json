@@ -15,7 +15,6 @@
     "marked": "^16.0.0",
     "node-fetch": "^2.6.7"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WebsiteGuy01/scholargo-site.git"
