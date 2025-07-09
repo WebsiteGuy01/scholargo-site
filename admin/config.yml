@@ -16,75 +16,50 @@ editor:
   preview: true
 
 collections:
-  - name: "scholarships"
-    label: "Scholarships"
-    folder: "posts/scholarships"
+  - name: "posts"
+    label: "All Posts"
+    folder: "posts"
     create: true
     slug: "{{fields.title}}"
     summary: "{{title}} | {{category}} | {{date}}"
     preview_path: "post.html?post={{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Leave blank to auto-generate" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"] }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Auto-generated if left blank" }
+      - { label: "Date", name: "date", widget: "datetime", required: true }
+      - { label: "Category", name: "category", widget: "select", options: ["Scholarship", "Education", "Technology"], required: true }
+      - label: "Subcategory"
+        name: "subcategory"
+        widget: "select"
+        options:
+          - { label: "BS", value: "BS" }
+          - { label: "MPhil", value: "MPhil" }
+          - { label: "Fellowship", value: "Fellowship" }
+          - { label: "Course", value: "Course" }
+          - { label: "Tutorial", value: "Tutorial" }
+          - { label: "Update", value: "Update" }
+          - { label: "Tool", value: "Tool" }
+          - { label: "AI", value: "AI" }
+          - { label: "Other", value: "Other" }
+        required: false
+      - { label: "Language", name: "language", widget: "select", options: ["en", "ur", "ar"], default: "en" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Link", name: "link", widget: "string", required: false }
-      - { label: "Deadline", name: "deadline", widget: "datetime", required: false }
-      - { label: "Expire Date", name: "expire_date", widget: "datetime", required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Reading Time (min)", name: "reading_time", widget: "number", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, hint: "Optional featured image" }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "External Link", name: "link", widget: "string", required: false }
+      - { label: "Featured?", name: "featured", widget: "boolean", default: false }
+      - { label: "Reading Time (min)", name: "reading_time", widget: "number", required: false, min: 1 }
+      - { label: "Post Status", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
+      - { label: "Structured Type", name: "structured_data_type", widget: "select", options: ["Article", "BlogPosting", "NewsArticle"], default: "Article" }
       - label: "Body"
         name: "body"
         widget: "markdown"
-
-  - name: "technology"
-    label: "Technology"
-    folder: "posts/technology"
-    create: true
-    slug: "{{fields.title}}"
-    preview_path: "post.html?post={{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", required: false }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["Update", "AI", "Tool", "Trend"] }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Link", name: "link", widget: "string", required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-
-  - name: "education"
-    label: "Education"
-    folder: "posts/education"
-    create: true
-    slug: "{{fields.title}}"
-    preview_path: "post.html?post={{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", required: false }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide", "MOOC"] }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Link", name: "link", widget: "string", required: false }
-      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
+        required: true
 
   - name: "authors"
     label: "Authors"
@@ -100,13 +75,13 @@ collections:
   - name: "pages"
     label: "Static Pages"
     files:
-      - label: "About Page"
+      - label: "About"
         name: "about"
         file: "about.html"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Contact Page"
+      - label: "Contact"
         name: "contact"
         file: "contact.html"
         fields:
