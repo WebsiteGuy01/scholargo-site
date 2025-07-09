@@ -27,7 +27,11 @@ collections:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", hint: "Auto-generated if left blank" }
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        required: false
+        hint: "Leave blank to auto-generate from title"
       - { label: "Date", name: "date", widget: "datetime" }
       - label: "Author"
         name: "author"
