@@ -1,76 +1,69 @@
-// Register AI Summary custom widget
-CMS.registerWidget('aiSummary', createClass({
-  getInitialState() {
-    return { loading: false };
-  },
-
-  handleClick: async function () {
-    const body = this.props.entry.getIn(['data', 'body']);
-    if (!body || body.trim() === "") {
-      alert("⚠️ Please write content in the Body first.");
-      return;
+// Register AI Summary Button Widget
+CMS.registerEditorComponent({
+  id: "ai-summary-button",
+  label: "🧠 Generate AI Summary",
+  fields: [],
+  pattern: /^/,
+  fromBlock: () => ({}),
+  toBlock: () => "",
+  toPreview: () => "<button>Generate Summary</button>",
+  control: class extends React.Component {
+    render() {
+      return null;
     }
+  }
+});
 
-    this.setState({ loading: true });
+// Add custom AI Summary button logic
+window.CMS_MANUAL_INIT = true;
 
-    const prompt = `Summarize the following content in 2 concise sentences:\n\n${body}`;
+window.addEventListener("DOMContentLoaded", () => {
+  CMS.init();
 
-    try {
-      const res = await fetch("https://api.openai.com/v1/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer sk-xxxx" // 🔁 Replace with your real key
-        },
-        body: JSON.stringify({
-          model: "text-davinci-003",
-          prompt: prompt,
-          max_tokens: 120,
-          temperature: 0.5
-        })
+  const interval = setInterval(() => {
+    const panel = document.querySelector('[for="summary"]');
+    if (panel && !document.getElementById("ai-gen-btn")) {
+      const btn = document.createElement("button");
+      btn.textContent = "⚡ Generate with AI";
+      btn.id = "ai-gen-btn";
+      btn.style.cssText = "margin-top:10px;padding:6px 12px;background:#007acc;color:white;border:none;border-radius:4px;cursor:pointer;";
+      panel.parentElement.appendChild(btn);
+
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "⏳ Generating...";
+        try {
+          const bodyField = document.querySelector('textarea[name="body"]');
+          const body = bodyField?.value || "";
+          if (!body || body.length < 30) {
+            alert("Please write the full post content first.");
+            btn.disabled = false;
+            btn.textContent = "⚡ Generate with AI";
+            return;
+          }
+
+          const res = await fetch("/.netlify/functions/ai-summary", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ body })
+          });
+
+          const data = await res.json();
+          if (data.summary) {
+            const summaryField = document.querySelector('textarea[name="summary"]');
+            if (summaryField) summaryField.value = data.summary;
+            alert("✅ Summary generated and filled!");
+          } else {
+            alert("❌ AI did not return a summary.");
+          }
+        } catch (err) {
+          alert("Error generating summary: " + err.message);
+        }
+        btn.disabled = false;
+        btn.textContent = "⚡ Generate with AI";
       });
 
-      const json = await res.json();
-      const summary = json.choices?.[0]?.text?.trim();
-
-      if (summary) {
-        this.props.onChange(summary);
-        alert("✅ Summary generated!");
-      } else {
-        alert("❌ AI did not return a summary.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("❌ Error generating summary");
-    } finally {
-      this.setState({ loading: false });
+      clearInterval(interval);
     }
-  },
-
-  render: function () {
-    const value = this.props.value || "";
-    return h('div', {},
-      h('textarea', {
-        value: value,
-        onChange: e => this.props.onChange(e.target.value),
-        placeholder: "AI-generated summary will appear here",
-        rows: 3,
-        style: { width: '100%', fontSize: '14px' }
-      }),
-      h('button', {
-        type: 'button',
-        onClick: this.handleClick.bind(this),
-        disabled: this.state.loading,
-        style: {
-          marginTop: '8px',
-          padding: '6px 12px',
-          backgroundColor: '#4F46E5',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }
-      }, this.state.loading ? "⏳ Generating..." : "✨ Generate Summary")
-    );
-  }
-}));
+  }, 1000);
+});
