@@ -10,5 +10,5 @@ deadline: 2025-07-09T06:10:05.027Z
 expire_date: 2025-07-09T06:10:05.047Z
 layout: standard
 structured_data_type: Article
-status: draft
+status: published
 ---
