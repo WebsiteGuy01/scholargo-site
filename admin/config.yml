@@ -2,14 +2,16 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
-
 site_url: https://scholargo.netlify.app
 display_url: https://scholargo.netlify.app
 logo_url: /assets/logo1.png
-locale: "en"
+locale: 'en'
 publish_mode: editorial_workflow
+show_preview_links: true
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
 editor:
   preview: true
 
@@ -18,84 +20,101 @@ collections:
     label: "Scholarships"
     folder: "posts/scholarships"
     create: true
-    slug: "{{slug}}"
-    preview_path: "post.html?post={{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", hint: "Leave blank to auto-generate" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Program Type", name: "category", widget: "select", options: ["BS", "MPhil", "PhD", "Fellowship"], required: true }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Deadline", name: "deadline", widget: "datetime", required: false }
-      - { label: "External Link", name: "link", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown", required: true }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        fields:
-          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
-          - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
-
-  - name: "education"
-    label: "Education"
-    folder: "posts/education"
-    create: true
-    slug: "{{slug}}"
+    slug: "{{fields.title}}"
+    summary: "{{title}} | {{category}} | {{date}}"
     preview_path: "post.html?post={{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", required: false }
+      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Leave blank to auto-generate" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Topic Type", name: "category", widget: "select", options: ["Course", "Guide", "Tutorial"] }
+      - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"] }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: true }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        fields:
-          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Deadline", name: "deadline", widget: "datetime", required: false }
+      - { label: "Expire Date", name: "expire_date", widget: "datetime", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Reading Time (min)", name: "reading_time", widget: "number", required: false }
+      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
 
   - name: "technology"
     label: "Technology"
     folder: "posts/technology"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.title}}"
     preview_path: "post.html?post={{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tag Type", name: "category", widget: "select", options: ["Update", "Tool", "News"] }
+      - { label: "Category", name: "category", widget: "select", options: ["Update", "AI", "Tool", "Trend"] }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: true }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        fields:
-          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
-          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "education"
+    label: "Education"
+    folder: "posts/education"
+    create: true
+    slug: "{{fields.title}}"
+    preview_path: "post.html?post={{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide", "MOOC"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "authors"
+    label: "Authors"
+    folder: "authors"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text", required: false }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Email", name: "email", widget: "string", required: false }
 
   - name: "pages"
     label: "Static Pages"
     files:
-      - label: "About"
+      - label: "About Page"
         name: "about"
         file: "about.html"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Privacy"
-        name: "privacy"
-        file: "privacy-policy.html"
+      - label: "Contact Page"
+        name: "contact"
+        file: "contact.html"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Contact"
-        name: "contact"
-        file: "contact.html"
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "privacy-policy.html"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
