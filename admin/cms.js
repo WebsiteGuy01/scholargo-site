@@ -53,4 +53,8 @@ CMS.registerWidget('aiSummary', createClass({
       h('button', {
         type: 'button',
         onClick: this.handleClick.bind(this),
-        disabled: this
+        disabled: this.state?.loading
+      }, this.state?.loading ? "Generating..." : "✨ Generate Summary")
+    );
+  }
+}));
