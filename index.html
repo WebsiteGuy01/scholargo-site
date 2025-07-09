@@ -221,12 +221,11 @@
       window.netlifyIdentity.on("init", (user) => {
         const hash = window.location.hash;
 
-        // ✅ Show proper popup depending on URL hash
         if (hash.includes("invite_token")) {
           window.netlifyIdentity.open("signup");
         } else if (hash.includes("confirmation_token")) {
           window.netlifyIdentity.open("confirmation");
-        } else if (hash.includes("recovery_token") || hash.includes("recovery_token=")) {
+        } else if (hash.includes("recovery_token")) {
           window.netlifyIdentity.open("recover");
         }
 
@@ -240,6 +239,7 @@
     }
   });
 </script>
+
 
 
 </body>
