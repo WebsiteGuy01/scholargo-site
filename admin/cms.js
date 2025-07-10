@@ -1,18 +1,16 @@
-// Register your custom preview CSS
-CMS.registerPreviewStyle("/admin/custom.css");
+// Wait until Netlify CMS is ready before using CMS
+window.CMS_MANUAL_INIT = true;
 
-// Optional: Add custom widgets, previews, or editor enhancements here
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof CMS !== 'undefined') {
+    // Optional: Add preview styles
+    CMS.registerPreviewStyle("/admin/custom.css");
 
-// Example: Custom editor config (optional)
-// CMS.registerEditorComponent({
-//   id: "youtube",
-//   label: "YouTube",
-//   fields: [{ name: "id", label: "YouTube Video ID", widget: "string" }],
-//   pattern: /^{{< youtube (\S+) >}}$/,
-//   fromBlock: match => ({ id: match[1] }),
-//   toBlock: obj => `{{< youtube ${obj.id} >}}`,
-//   toPreview: obj => `<iframe width="100%" src="https://www.youtube.com/embed/${obj.id}" frameborder="0" allowfullscreen></iframe>`
-// });
+    // Optional: You can register widgets or previews here
 
-// Init CMS (not needed if you're using config.yml, but here for flexibility)
-CMS.init();
+    // Finally, initialize the CMS
+    CMS.init();
+  } else {
+    console.error("Netlify CMS failed to load.");
+  }
+});
