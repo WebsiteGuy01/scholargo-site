@@ -216,11 +216,12 @@
 <!-- Netlify Identity Widget -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener('load', () => {
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", (user) => {
         const hash = window.location.hash;
 
+        // Check for invite or confirmation tokens and open the correct modal
         if (hash.includes("invite_token")) {
           window.netlifyIdentity.open("signup");
         } else if (hash.includes("confirmation_token")) {
@@ -229,16 +230,20 @@
           window.netlifyIdentity.open("recover");
         }
 
+        // If logged out, redirect to admin after login
         if (!user) {
           window.netlifyIdentity.on("login", () => {
             document.location.href = "/admin/";
           });
         }
       });
+
+      // Initialize identity *after* handlers are registered
       window.netlifyIdentity.init();
     }
   });
 </script>
+
 
 
 
