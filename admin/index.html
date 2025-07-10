@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ScholarGo CMS</title>
     <link rel="icon" href="/assets/logo1.png" />
-
-    <!-- Load React (needed for custom previews/widgets) -->
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-
-    <!-- Load Netlify CMS core -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/netlify-cms-app@^2.15.72/dist/netlify-cms.js"></script>
-
-    <!-- Custom CSS for live preview panel -->
+    <!-- Optional: Custom CMS CSS -->
     <link rel="stylesheet" href="/admin/custom.css" />
   </head>
   <body>
-    <!-- CMS logic: previews, widgets, identity, etc. -->
+    <!-- Netlify Identity for login -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Netlify CMS core script -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+
+    <!-- Custom CMS configuration and widgets -->
     <script src="/admin/cms.js"></script>
 
+    <!-- Identity init for redirect after login -->
     <script>
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
+        window.netlifyIdentity.on("init", (user) => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
