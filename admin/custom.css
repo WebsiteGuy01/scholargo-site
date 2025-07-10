@@ -1,0 +1,81 @@
+/* Custom Netlify CMS Styling */
+:root {
+  --primary-color: #1e90ff;
+  --header-bg: #111;
+  --accent: #facc15;
+}
+
+.nc-root {
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  background-color: #fdfdfd;
+}
+
+.nc-app-header {
+  background-color: var(--header-bg) !important;
+  color: white !important;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.nc-app-header .nc-app-header-main {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nc-sidebar {
+  background: #f9fafb !important;
+}
+
+.nc-sidebar-nav .nc-sidebar-nav-link {
+  color: #333 !important;
+}
+
+.nc-entryEditor {
+  background: white;
+  padding-bottom: 20px;
+}
+
+.nc-entryEditor-entryPreview {
+  background: #f3f4f6;
+  padding: 1rem;
+  border: 1px dashed #ccc;
+}
+
+.nc-entryEditor-entryPreview h1,
+.nc-entryEditor-entryPreview h2 {
+  font-weight: 600;
+}
+
+.nc-widgetControl-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.nc-controlPane .nc-toolbar {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+}
+
+.nc-controlPane .nc-toolbar button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.nc-widgetPreview {
+  border-left: 3px solid var(--primary-color);
+  background-color: #f9f9f9;
+  padding: 1rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .nc-entryEditor-entryPreview {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .nc-app-header-main {
+    font-size: 1rem;
+  }
+}
