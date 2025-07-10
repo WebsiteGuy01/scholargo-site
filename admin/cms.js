@@ -1,69 +1,36 @@
-// Register AI Summary Button Widget
-CMS.registerEditorComponent({
-  id: "ai-summary-button",
-  label: "🧠 Generate AI Summary",
-  fields: [],
-  pattern: /^/,
-  fromBlock: () => ({}),
-  toBlock: () => "",
-  toPreview: () => "<button>Generate Summary</button>",
-  control: class extends React.Component {
-    render() {
-      return null;
-    }
-  }
-});
+import React from "react";
+const CMS = window.CMS;
+const React = window.React;
 
-// Add custom AI Summary button logic
-window.CMS_MANUAL_INIT = true;
+// Optional: Register any custom preview templates here
+// Example preview: use if you want to style markdown previews
+const PostPreview = ({ entry, widgetFor }) => {
+  return (
+    <div className="post-preview">
+      <h1>{entry.getIn(["data", "title"])}</h1>
+      <p>{entry.getIn(["data", "description"])}</p>
+      <div>{widgetFor("body")}</div>
+    </div>
+  );
+};
 
-window.addEventListener("DOMContentLoaded", () => {
-  CMS.init();
+// Register preview templates for each collection
+CMS.registerPreviewTemplate("scholarships", PostPreview);
+CMS.registerPreviewTemplate("education", PostPreview);
+CMS.registerPreviewTemplate("technology", PostPreview);
+CMS.registerPreviewTemplate("pages", PostPreview);
 
-  const interval = setInterval(() => {
-    const panel = document.querySelector('[for="summary"]');
-    if (panel && !document.getElementById("ai-gen-btn")) {
-      const btn = document.createElement("button");
-      btn.textContent = "⚡ Generate with AI";
-      btn.id = "ai-gen-btn";
-      btn.style.cssText = "margin-top:10px;padding:6px 12px;background:#007acc;color:white;border:none;border-radius:4px;cursor:pointer;";
-      panel.parentElement.appendChild(btn);
+// Optional: Load custom CSS for preview pane styling
+CMS.registerPreviewStyle("/admin/custom.css");
 
-      btn.addEventListener("click", async () => {
-        btn.disabled = true;
-        btn.textContent = "⏳ Generating...";
-        try {
-          const bodyField = document.querySelector('textarea[name="body"]');
-          const body = bodyField?.value || "";
-          if (!body || body.length < 30) {
-            alert("Please write the full post content first.");
-            btn.disabled = false;
-            btn.textContent = "⚡ Generate with AI";
-            return;
-          }
-
-          const res = await fetch("/.netlify/functions/ai-summary", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ body })
-          });
-
-          const data = await res.json();
-          if (data.summary) {
-            const summaryField = document.querySelector('textarea[name="summary"]');
-            if (summaryField) summaryField.value = data.summary;
-            alert("✅ Summary generated and filled!");
-          } else {
-            alert("❌ AI did not return a summary.");
-          }
-        } catch (err) {
-          alert("Error generating summary: " + err.message);
-        }
-        btn.disabled = false;
-        btn.textContent = "⚡ Generate with AI";
+// Enable manual initialization (already present in index.html)
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
       });
-
-      clearInterval(interval);
     }
-  }, 1000);
-});
+  });
+  window.netlifyIdentity.init();
+}
