@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ScholarGo CMS</title>
-  <link rel="icon" href="/assets/logo1.png" />
-  <link rel="stylesheet" href="/admin/custom.css" />
-  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.css" />
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScholarGo CMS</title>
+    <link rel="icon" href="/assets/logo1.png" />
 
-  <body>
-    <!-- Identity for login -->
+    <!-- Load React (needed for custom previews/widgets) -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+    <!-- Load Netlify CMS core -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms-app@^2.15.72/dist/netlify-cms.js"></script>
 
-    <!-- Core Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-
-    <!-- Custom CMS logic (GPT button, widgets) -->
+    <!-- Custom CSS for live preview panel -->
+    <link rel="stylesheet" href="/admin/custom.css" />
+  </head>
+  <body>
+    <!-- CMS logic: previews, widgets, identity, etc. -->
     <script src="/admin/cms.js"></script>
 
     <script>
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', user => {
+        window.netlifyIdentity.on("init", user => {
           if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
             });
           }
         });
