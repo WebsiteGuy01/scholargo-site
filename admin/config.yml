@@ -27,11 +27,32 @@ collections:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Auto-generated if left blank" }
+      - { label: "Slug", name: "slug", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Category", name: "category", widget: "select", options: ["BS", "MPhil", "Fellowship"], required: true }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: image
+        required: false
+        hint: "Optional featured image"
+        media_library:
+          config:
+            max_file_size: 3MB
+            crop: true
+            aspect_ratio: 16:9
+      - label: "Gallery"
+        name: "gallery"
+        widget: list
+        required: false
+        field:
+          label: "Image"
+          name: "image"
+          widget: image
+          media_library:
+            config:
+              crop: true
+              aspect_ratio: 4:3
       - { label: "Attachments", name: "attachments", widget: "file", multiple: true, required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "External Link", name: "link", widget: "string", required: false }
@@ -42,6 +63,7 @@ collections:
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
+      - { label: "Post Layout", name: "layout", widget: "select", options: ["standard", "spotlight", "gallery", "video", "announcement"], required: false }
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -52,56 +74,44 @@ collections:
     folder: "posts/education"
     create: true
     slug: "{{slug}}"
-    summary: "{{title}} | {{category}} | {{date}}"
     preview_path: "post.html?post={{slug}}"
-    editor:
-      preview: true
+    summary: "{{title}} | {{category}} | {{date}}"
     fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide"], required: true }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Course", "Tutorial", "Guide"] }
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "External Link", name: "link", widget: "string", required: false }
-      - { label: "Attachments", name: "attachments", widget: "file", multiple: true, required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Attachments", name: "attachments", widget: "file", multiple: true }
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-        required: true
+      - { label: "Post Layout", name: "layout", widget: "select", options: ["standard", "guide", "gallery", "video"] }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
 
   - name: "technology"
     label: "Technology"
     folder: "posts/technology"
     create: true
     slug: "{{slug}}"
-    summary: "{{title}} | {{category}} | {{date}}"
     preview_path: "post.html?post={{slug}}"
-    editor:
-      preview: true
+    summary: "{{title}} | {{category}} | {{date}}"
     fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["Tool", "Innovation", "Update", "AI"], required: true }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Tool", "Innovation", "Update", "AI"] }
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "External Link", name: "link", widget: "string", required: false }
-      - { label: "Attachments", name: "attachments", widget: "file", multiple: true, required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Attachments", name: "attachments", widget: "file", multiple: true }
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Canonical URL", name: "canonical_url", widget: "string", required: false }
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-        required: true
+      - { label: "Post Layout", name: "layout", widget: "select", options: ["standard", "tech-spotlight", "gallery", "video"] }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
 
   - name: "pages"
     label: "Pages"
@@ -124,3 +134,4 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+
