@@ -1,0 +1,5 @@
+# netlify.toml
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
