@@ -32,13 +32,17 @@ const staticPages = [
 ];
 
 staticPages.forEach(page => {
-  urlset.ele('url').ele('loc', {}, BASE_URL + page);
+  const url = urlset.ele('url');
+  url.ele('loc', {}, BASE_URL + page);
+  url.ele('lastmod', {}, new Date().toISOString().split('T')[0]);
 });
 
-// Add posts from all-index.json
+// Add dynamic post pages
 const posts = loadPosts();
 posts.forEach(post => {
-  urlset.ele('url').ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`);
+  const url = urlset.ele('url');
+  url.ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`);
+  url.ele('lastmod', {}, post.date.split('T')[0]);
 });
 
 // Save sitemap.xml
