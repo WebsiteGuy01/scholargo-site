@@ -1,66 +1,48 @@
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
 const xmlbuilder = require('xmlbuilder');
 
-// Get today's date
-const today = new Date().toISOString().split('T')[0];
+const BASE_URL = 'https://scholargo.netlify.app';
+const POSTS_DIR = path.join(__dirname, 'posts');
 
-// Define the root directory where your markdown posts are located
-const postsDir = path.join(__dirname, 'posts');
-
-// Define the output file path for your sitemap
-const sitemapPath = path.join(__dirname, 'sitemap.xml');
-
-// Function to read markdown files and create a URL entry for each
-function generateSitemap() {
-  // Find all markdown files inside the "posts" folder
-  glob(`${postsDir}/**/*.md`, (err, files) => {
-    if (err) {
-      console.error('Error reading posts:', err);
-      return;
-    }
-
-    // Start building the sitemap
-    const sitemap = xmlbuilder.create('urlset', { version: '1.0', encoding: 'UTF-8' })
-      .att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-
-    // Add the homepage
-    sitemap.ele('url')
-      .ele('loc', 'https://scholargo.netlify.app/').up()
-      .ele('lastmod', today).up()
-      .ele('changefreq', 'daily').up()
-      .ele('priority', '1.0').up();
-
-    // Add the main pages like Scholarships, Education, etc.
-    const mainPages = ['scholarships.html', 'education.html', 'technology.html', 'about.html', 'contact.html', 'privacy-policy.html'];
-    mainPages.forEach(page => {
-      sitemap.ele('url')
-        .ele('loc', `https://scholargo.netlify.app/${page}`).up()
-        .ele('lastmod', today).up()
-        .ele('changefreq', 'weekly').up()
-        .ele('priority', '0.8').up();
-    });
-
-    // Add the posts
-    files.forEach(file => {
-      const postSlug = path.basename(file, '.md'); // Get the post's slug from the file name
-
-      // Add a URL for the post
-      sitemap.ele('url')
-        .ele('loc', `https://scholargo.netlify.app/post.html?post=${postSlug}`).up()
-        .ele('lastmod', today).up()
-        .ele('changefreq', 'monthly').up()
-        .ele('priority', '0.6').up();
-    });
-
-    // Save the generated sitemap to the sitemap.xml file
-    const xmlString = sitemap.end({ pretty: true });
-    fs.writeFileSync(sitemapPath, xmlString);
-
-    console.log('Sitemap generated successfully!');
-  });
+// Load post metadata from all-index.json
+function loadPosts() {
+  const indexPath = path.join(POSTS_DIR, 'all-index.json');
+  if (!fs.existsSync(indexPath)) {
+    console.error('❌ all-index.json not found. Run "npm run generate-posts" first.');
+    return [];
+  }
+  const content = fs.readFileSync(indexPath, 'utf-8');
+  return JSON.parse(content);
 }
 
-// Run the function to generate the sitemap
-generateSitemap();
+// Start building the sitemap
+const urlset = xmlbuilder.create('urlset', { encoding: 'UTF-8' });
+urlset.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+// Add static pages
+const staticPages = [
+  '/',
+  '/about.html',
+  '/contact.html',
+  '/privacy-policy.html',
+  '/scholarships.html',
+  '/education.html',
+  '/technology.html'
+];
+
+staticPages.forEach(page => {
+  urlset.ele('url').ele('loc', {}, BASE_URL + page);
+});
+
+// Add posts from all-index.json
+const posts = loadPosts();
+posts.forEach(post => {
+  urlset.ele('url').ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`);
+});
+
+// Save sitemap.xml
+const sitemapXml = urlset.end({ pretty: true });
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapXml);
+
+console.log('✅ sitemap.xml generated.');

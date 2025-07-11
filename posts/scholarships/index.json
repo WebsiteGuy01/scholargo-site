@@ -12,5 +12,15 @@
     "slug": "sample-scholarship",
     "link": "/post.html?post=sample-scholarship",
     "thumbnail": "/assets/uploads/scholarship-thumb.png"
+  },
+  {
+    "title": "sholarship",
+    "date": "2025-07-09T06:10:05.001Z",
+    "category": "Scholarships",
+    "description": "",
+    "tags": [],
+    "slug": "sholarship",
+    "link": "/post.html?post=sholarship",
+    "thumbnail": "/assets/uploads/thumb-scholarship.png"
   }
 ]
