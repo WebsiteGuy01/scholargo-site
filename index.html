@@ -66,16 +66,21 @@
   </section>
 
   <!-- Smart Search Section -->
-  <section class="search-section" data-aos="fade-up">
-    <input type="text" placeholder="🔍 Search anything..." />
-    <select>
-      <option value="all">All Categories</option>
-      <option value="scholarships">Scholarships</option>
-      <option value="education">Education</option>
-      <option value="technology">Technology</option>
-    </select>
-    <button class="latest-btn">Search</button>
-  </section>
+ <section class="search-section" data-aos="fade-up">
+  <input type="text" id="searchInput" placeholder="🔍 Search anything..." />
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+    <option value="scholarships">Scholarships</option>
+    <option value="education">Education</option>
+    <option value="technology">Technology</option>
+  </select>
+  <button class="latest-btn" id="searchBtn">Search</button>
+</section>
+
+<div id="searchResults" class="card-grid" data-aos="fade-up" style="display: none;">
+  <!-- Search results will go here -->
+</div>
+
 
   <!-- Highlighted Features -->
   <section class="card-grid">
@@ -241,6 +246,53 @@
       window.netlifyIdentity.init();
     }
   });
+</script>
+<script>
+const allPosts = [];
+
+const fetchPosts = async () => {
+  const categories = ["scholarships", "education", "technology"];
+  for (let category of categories) {
+    try {
+      const res = await fetch(`posts/${category}/index.json`);
+      const data = await res.json();
+      allPosts.push(...data.map(post => ({ ...post, category })));
+    } catch (err) {
+      console.error(`Error loading ${category} posts`, err);
+    }
+  }
+};
+
+const runSearch = () => {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filter = document.getElementById("categoryFilter").value;
+  const resultsContainer = document.getElementById("searchResults");
+  resultsContainer.innerHTML = "";
+
+  const filtered = allPosts.filter(post => {
+    const matchText = `${post.title} ${post.description} ${post.tags?.join(" ")} ${post.category}`.toLowerCase();
+    const matchesQuery = matchText.includes(query);
+    const matchesFilter = filter === "all" || post.category === filter;
+    return matchesQuery && matchesFilter;
+  });
+
+  if (filtered.length === 0) {
+    resultsContainer.innerHTML = "<p>No results found.</p>";
+  } else {
+    resultsContainer.innerHTML = filtered.map(createCard).join("");
+  }
+
+  resultsContainer.style.display = "grid";
+};
+
+document.getElementById("searchBtn").addEventListener("click", runSearch);
+
+// Optional: trigger on Enter key
+document.getElementById("searchInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") runSearch();
+});
+
+fetchPosts();
 </script>
 
 
