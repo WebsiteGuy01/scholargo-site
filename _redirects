@@ -1,0 +1,7 @@
+# Allow direct access to important files
+/sitemap.xml        /sitemap.xml        200
+/sitemap_index.xml  /sitemap_index.xml  200
+/robots.txt         /robots.txt         200
+
+# Optional SPA fallback (if you ever use SPA routing)
+/*                  /index.html         200
