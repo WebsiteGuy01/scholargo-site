@@ -27,19 +27,28 @@ function groupPosts(files) {
   const allPosts = [];
 
   files.forEach(file => {
+    const relativePath = path.relative(POSTS_DIR, file);
+    const parts = relativePath.split(path.sep);
+
+    // Skip files not inside a folder like posts/scholarships/post.md
+    if (parts.length < 2) {
+      console.warn(`⚠️ Skipping: '${file}' (not in a category folder)`);
+      return;
+    }
+
+    const section = parts[0];
+    const slug = path.basename(file, '.md');
+
     const content = fs.readFileSync(file, 'utf8');
     const { data, content: body } = matter(content);
-
-    const slug = path.basename(file, '.md');
-    const section = path.relative(POSTS_DIR, file).split(path.sep)[0];
 
     const post = {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
-      category: section.charAt(0).toUpperCase() + section.slice(1), // ✅ Always matches folder
+      category: section.charAt(0).toUpperCase() + section.slice(1),
       description: data.description || '',
       tags: data.tags || [],
-      slug: slug,
+      slug,
       link: `/post.html?post=${slug}`,
       thumbnail: data.thumbnail || '',
     };
@@ -65,7 +74,7 @@ function saveIndexFiles(grouped, allPosts) {
   console.log(`✅ ${allOutput} written.`);
 }
 
-// Main Run
+// MAIN
 const mdFiles = findMarkdownFiles(POSTS_DIR);
 const { grouped, allPosts } = groupPosts(mdFiles);
 saveIndexFiles(grouped, allPosts);
