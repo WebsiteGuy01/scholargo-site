@@ -1,3 +1,4 @@
+Sitemap: https://scholargo.netlify.app/sitemap_index.xml
 User-agent: *
 Allow: /
 
