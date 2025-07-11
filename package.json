@@ -4,7 +4,9 @@
   "main": "generate-index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-posts": "node generate-index.js"
+    "generate-posts": "node generate-index.js",
+    "generate-sitemap": "node generate-sitemap.js",
+    "build": "npm run generate-posts && npm run generate-sitemap"
   },
   "keywords": [],
   "author": "",
