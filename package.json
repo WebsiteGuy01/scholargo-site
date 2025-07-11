@@ -2,7 +2,6 @@
   "name": "scholargo-site",
   "version": "1.0.0",
   "main": "generate-index.js",
-  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-posts": "node generate-index.js"
@@ -11,9 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
     "marked": "^16.0.0",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "path": "^0.12.7",
+    "xmlbuilder": "^15.1.1"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/WebsiteGuy01/scholargo-site/issues"
   },
-  "homepage": "https://github.com/WebsiteGuy01/scholargo-site#readme"
+  "homepage": "https://github.com/WebsiteGuy01/scholargo-site#readme",
+  "description": ""
 }
