@@ -5,18 +5,15 @@ const xmlbuilder = require('xmlbuilder');
 const BASE_URL = 'https://scholargo.netlify.app';
 const POSTS_DIR = path.join(__dirname, 'posts');
 
-// Load post metadata from all-index.json
-function loadPosts() {
-  const indexPath = path.join(POSTS_DIR, 'all-index.json');
-  if (!fs.existsSync(indexPath)) {
-    console.error('❌ all-index.json not found. Run "npm run generate-posts" first.');
-    return [];
-  }
-  const content = fs.readFileSync(indexPath, 'utf-8');
-  return JSON.parse(content);
+// Load post metadata
+const indexPath = path.join(POSTS_DIR, 'all-index.json');
+if (!fs.existsSync(indexPath)) {
+  console.error('❌ all-index.json not found.');
+  process.exit(1);
 }
+const posts = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
 
-// Start building the sitemap
+// Start sitemap
 const urlset = xmlbuilder.create('urlset', { encoding: 'UTF-8' });
 urlset.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
@@ -28,25 +25,22 @@ const staticPages = [
   '/privacy-policy.html',
   '/scholarships.html',
   '/education.html',
-  '/technology.html'
+  '/technology.html',
 ];
 
 staticPages.forEach(page => {
-  const url = urlset.ele('url');
-  url.ele('loc', {}, BASE_URL + page);
-  url.ele('lastmod', {}, new Date().toISOString().split('T')[0]);
+  urlset.ele('url').ele('loc', {}, BASE_URL + page)
+    .up().ele('lastmod', {}, new Date().toISOString().split('T')[0]);
 });
 
-// Add dynamic post pages
-const posts = loadPosts();
+// Add posts with clean URLs
 posts.forEach(post => {
-  const url = urlset.ele('url');
-  url.ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`);
-  url.ele('lastmod', {}, post.date.split('T')[0]);
+  urlset.ele('url')
+    .ele('loc', {}, `${BASE_URL}/posts/${post.slug}/`).up()
+    .ele('lastmod', {}, post.date.split('T')[0]);
 });
 
-// Save sitemap.xml
+// Save to sitemap.xml
 const sitemapXml = urlset.end({ pretty: true });
 fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapXml);
-
 console.log('✅ sitemap.xml generated.');
