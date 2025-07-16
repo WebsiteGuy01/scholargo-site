@@ -1,47 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://scholargo.netlify.app/index.html</loc>
-    <lastmod>2025-07-13</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/about.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/contact.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/privacy-policy.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/scholarships.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/education.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/technology.html</loc>
-    <lastmod>2025-07-08</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/post.html?post=sample-education</loc>
-    <lastmod>2025-06-23</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/post.html?post=sample-scholarship</loc>
-    <lastmod>2025-06-23</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/post.html?post=sholarship</loc>
-    <lastmod>2025-07-09</lastmod>
-  </url>
-  <url>
-    <loc>https://scholargo.netlify.app/post.html?post=sample-technology</loc>
-    <lastmod>2025-06-23</lastmod>
+    <loc>https://scholargo.netlify.app/</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 </urlset>
