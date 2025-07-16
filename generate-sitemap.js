@@ -1,33 +1,32 @@
-// 📁 generate-sitemap.js
+// generate-sitemap.js
 const fs = require('fs');
 const path = require('path');
 const xmlbuilder = require('xmlbuilder');
 
 const BASE_URL = 'https://scholargo.netlify.app';
 const POSTS_DIR = path.join(__dirname, 'posts');
-const allIndexPath = path.join(POSTS_DIR, 'all-index.json');
 
+// Load post metadata from all-index.json
 function loadPosts() {
-  if (!fs.existsSync(allIndexPath)) {
-    console.error('❌ all-index.json not found.');
+  const indexPath = path.join(POSTS_DIR, 'all-index.json');
+  if (!fs.existsSync(indexPath)) {
+    console.error('❌ all-index.json not found. Run "npm run generate-posts" first.');
     return [];
   }
-  const content = fs.readFileSync(allIndexPath, 'utf-8');
+  const content = fs.readFileSync(indexPath, 'utf-8');
   return JSON.parse(content);
 }
 
-function getLastMod(filePath) {
-  try {
-    const stats = fs.statSync(filePath);
-    return stats.mtime.toISOString().split('T')[0];
-  } catch {
-    return '2025-07-01';
-  }
+// Format date for <lastmod>
+function formatDate(date) {
+  return new Date(date).toISOString().split('T')[0];
 }
 
+// Main sitemap.xml
 const urlset = xmlbuilder.create('urlset', { encoding: 'UTF-8' });
 urlset.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
+// Static pages
 const staticPages = [
   'index.html',
   'about.html',
@@ -38,23 +37,37 @@ const staticPages = [
   'technology.html'
 ];
 
-staticPages.forEach(page => {
-  const filePath = path.join(__dirname, page);
+staticPages.forEach(file => {
+  const filePath = path.join(__dirname, file);
+  const lastmod = fs.existsSync(filePath) ? formatDate(fs.statSync(filePath).mtime) : formatDate(Date.now());
   urlset.ele('url')
-    .ele('loc', {}, `${BASE_URL}/${page.replace('index.html', '')}`)
-    .up()
-    .ele('lastmod', {}, getLastMod(filePath));
+    .ele('loc', {}, `${BASE_URL}/${file}`).up()
+    .ele('lastmod', {}, lastmod);
 });
 
+// Posts
 const posts = loadPosts();
 posts.forEach(post => {
+  const lastmod = post.date || formatDate(Date.now());
   urlset.ele('url')
-    .ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`)
-    .up()
-    .ele('lastmod', {}, post.date || '2025-07-01');
+    .ele('loc', {}, `${BASE_URL}/post.html?post=${post.slug}`).up()
+    .ele('lastmod', {}, formatDate(lastmod));
 });
 
+// Write sitemap.xml
 const sitemapXml = urlset.end({ pretty: true });
 fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapXml);
+console.log('✅ sitemap.xml generated.');
 
-console.log('✅ sitemap.xml generated with <lastmod> tags.');
+// === Sitemap Index (sitemap_index.xml) ===
+const sitemapIndex = xmlbuilder.create('sitemapindex', { encoding: 'UTF-8' });
+sitemapIndex.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+// Only one entry for now — main sitemap
+sitemapIndex.ele('sitemap')
+  .ele('loc', {}, `${BASE_URL}/sitemap.xml`).up()
+  .ele('lastmod', {}, formatDate(Date.now()));
+
+// Save sitemap_index.xml
+fs.writeFileSync(path.join(__dirname, 'sitemap_index.xml'), sitemapIndex.end({ pretty: true }));
+console.log('✅ sitemap_index.xml generated.');
