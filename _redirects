@@ -1,7 +1,11 @@
-# Allow direct access to important files
+# ✅ Direct access to important files
 /sitemap.xml        /sitemap.xml        200
 /sitemap_index.xml  /sitemap_index.xml  200
 /robots.txt         /robots.txt         200
 
-# Optional SPA fallback (if you ever use SPA routing)
+# ✅ Redirect clean URLs to dynamic post.html
+/posts/:slug/       /post.html?post=:slug  200
+
+# ✅ Fallback for single-page app (optional)
+# If you're NOT using React/SPA routing, you can comment this out
 /*                  /index.html         200
